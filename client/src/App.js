@@ -1,33 +1,30 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// Libraries , css and static files
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import "./App.css";
 
-import NoAuthHome from "./pages/NoAuthHome";
-import AuthHome from "./pages/AuthHome";
-import UnmatchedRoute from "./pages/UnmatchedRoute";
+// Components and util
+import Home from "./pages/Home";
+import Navbar from "./components/Navbar";
+import { AuthProvider } from "./util/AuthContext";
 
 export default function App() {
-  // eslint-disable-next-line
-  const [authenticated, setAuthenticated] = useState(false);
-
-  const routes = authenticated ? (
-    <Switch>
-      <Route path="/auth" exact>
-        <AuthHome />
-      </Route>
-      <Route path="*">
-        <UnmatchedRoute />
-      </Route>
-    </Switch>
-  ) : (
+  const routes = (
     <Switch>
       <Route path="/" exact>
-        <NoAuthHome />
+        <Home />
       </Route>
       <Route path="*">
-        <UnmatchedRoute />
+        <Redirect to="/" />
       </Route>
     </Switch>
   );
-  return <Router>{routes}</Router>;
+
+  return (
+    <AuthProvider>
+      <Router>
+        <Navbar>{routes}</Navbar>
+      </Router>
+    </AuthProvider>
+  );
 }

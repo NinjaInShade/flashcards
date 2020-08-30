@@ -23,3 +23,4 @@
 - Each flashcard related to one group
 - Question
 - Answer
+- Completed
