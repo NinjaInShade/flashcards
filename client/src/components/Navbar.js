@@ -1,5 +1,5 @@
 // Libraries , css and static files
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 
@@ -10,6 +10,11 @@ export default function Navbar(props) {
   const { children } = props;
   const [auth] = useContext(AuthContext);
   const [sidebar, setSidebar] = useState(false);
+  const [path, setPath] = useState(window.location.pathname);
+
+  useEffect(() => {
+    setPath(window.location.pathname);
+  }, []);
 
   const navLinks = [
     {
@@ -37,7 +42,6 @@ export default function Navbar(props) {
 
   const notAuthNavLinks = navLinks.filter((item) => item.requireAuth === false);
   const userNavLinks = auth.isAuth ? navLinks : notAuthNavLinks;
-  const path = window.location.pathname;
 
   function sidebarToggle() {
     setSidebar(!sidebar);
@@ -74,7 +78,7 @@ export default function Navbar(props) {
           </button> */}
         {userNavLinks.map((item, index) => {
           return (
-            <Link to={item.pageURL} key={index} style={path === item.pageURL ? { borderRadius: " 4px", borderBottom: `5px solid ${item.colour}` } : {}} id={index}>
+            <Link to={item.pageURL} key={index} style={path === item.pageURL ? { borderRadius: " 4px", borderBottom: `5px solid ${item.colour}` } : {}}>
               {item.icon}
             </Link>
           );

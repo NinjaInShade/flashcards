@@ -1,32 +1,81 @@
 // Libraries , css and static files
-import React from "react";
-import authentication from "../static/authentication.png";
+import React, { useState } from "react";
 import "./NoAuthHome.css";
+import UI from "../static/UI.svg";
+import Analytics from "../static/Analytics.svg";
 
-export default function NoAuthHome(props) {
-  return (
-    <div className="infoBox">
-      <div className="infoBoxFlex">
-        <div>
-          <img src={authentication} alt="Login icom" className="authentication" width="350px" height="350px" />
+export default function NoAuliHome(props) {
+  const [pageContent, setPageContent] = useState("default");
+
+  let content;
+  if (pageContent === "default") {
+    content = (
+      <div className="content">
+        <h1 className="heading">Once logged in...</h1>
+        <div className="section">
+          <h2 className="mobileHeading">You gain access to multiple features!</h2>
+          <div className="img">
+            <img src={UI} alt="ui" className="svg" />
+          </div>
+          <div className="text">
+            <h2>You gain access to multiple features!</h2>
+            <ul className="features ">
+              <li>
+                <i className="fas fa-angle-double-right"></i>Create groups
+              </li>
+              <li>
+                <i className="fas fa-angle-double-right"></i>Create flashcards
+              </li>
+              <li>
+                <i className="fas fa-angle-double-right"></i>Test and improve your memory!
+              </li>
+              <li>
+                <i className="fas fa-angle-double-right"></i>Track your progress
+              </li>
+            </ul>
+          </div>
         </div>
-        <div className="text">
-          <h2 className="headingText">Please login to use</h2>
-          <p className="leadText">
-            You will be able to - <br />- Create flashcards
-            <br /> - Create categories
-            <br /> - View progress
-            <br /> - Sort flashcards
-          </p>
-          <div></div>
-          <a href="/signup">
-            <button className="btn">Sign up</button>
-          </a>
-          <a href="/login">
-            <button className="btn">Login</button>
-          </a>
+        <div className="section order">
+          <h2 className="mobileHeading">Track your progress!</h2>
+          <div className="text">
+            <h2>Track your progress!</h2>
+            <ul className="features">
+              <li>
+                <i className="fas fa-angle-double-right"></i>View overall stats
+              </li>
+              <li>
+                <i className="fas fa-angle-double-right"></i>View completion % per group
+              </li>
+              <li>
+                <i className="fas fa-angle-double-right"></i>See your groups completed
+              </li>
+              <li>
+                <i className="fas fa-angle-double-right"></i>Be notified of common wrong answers
+              </li>
+            </ul>
+          </div>
+          <div className="img">
+            <img src={Analytics} alt="Analytics" className="svg" />
+          </div>
+        </div>
+
+        <div className="buttons">
+          <button className="btn" onClick={() => setPageContent("signup")}>
+            Sign up
+          </button>
+          <button className="btn" onClick={() => setPageContent("login")}>
+            Login
+          </button>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
+  if (pageContent === "signup") {
+    content = <p>SIGNUP</p>;
+  }
+  if (pageContent === "login") {
+    content = <p>LOGIN</p>;
+  }
+
+  return content;
 }
