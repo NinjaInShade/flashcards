@@ -1,6 +1,6 @@
 // Libraries , css and static files
 import React, { useState, useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./Navbar.css";
 
 // Components and util
@@ -9,12 +9,16 @@ import { AuthContext } from "../util/AuthContext";
 export default function Navbar(props) {
   const { children } = props;
   const [auth] = useContext(AuthContext);
-  const [sidebar, setSidebar] = useState(false);
   const [path, setPath] = useState(window.location.pathname);
+  const history = useHistory();
 
   useEffect(() => {
-    setPath(window.location.pathname);
-  }, []);
+    history.listen((location) => {
+      if (location.pathname !== path) {
+        setPath(location.pathname);
+      }
+    });
+  }, [history, path]);
 
   const navLinks = [
     {
@@ -43,39 +47,9 @@ export default function Navbar(props) {
   const notAuthNavLinks = navLinks.filter((item) => item.requireAuth === false);
   const userNavLinks = auth.isAuth ? navLinks : notAuthNavLinks;
 
-  function sidebarToggle() {
-    setSidebar(!sidebar);
-  }
-
   return (
     <React.Fragment>
-      {/* Sidebar */}
-      <div className={sidebar ? "sidebarPanel active" : "sidebarPanel"} style={sidebar ? { left: "0" } : { left: "-100%" }}>
-        <div onClick={sidebarToggle} className="close">
-          <i className="fas fa-times fa-3x" style={{ color: "white" }}></i>
-        </div>
-        <ul className="navList">
-          {userNavLinks.map((item, index) => {
-            return (
-              <li className="navItem" key={index} onClick={() => setSidebar(!sidebar)}>
-                <Link to={item.pageURL}>
-                  {item.icon}
-                  <p className="navItemText" style={{ color: `${item.colour}` }}>
-                    {item.pageName}
-                  </p>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-      <div className="overlay" style={sidebar ? {} : { display: "none" }} onClick={sidebarToggle}></div>
-
-      {/* Navbar */}
       <div className="navbar">
-        {/* <button onClick={sidebarToggle} style={{ background: "none", outline: "none", border: "none", visibility: "hidden" }}>
-            <i className="fas fa-bars fa-3x hamburger"></i>
-          </button> */}
         {userNavLinks.map((item, index) => {
           return (
             <Link to={item.pageURL} key={index} style={path === item.pageURL ? { borderRadius: " 4px", borderBottom: `5px solid ${item.colour}` } : {}}>

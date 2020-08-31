@@ -4,6 +4,9 @@ import "./NoAuthHome.css";
 import UI from "../static/UI.svg";
 import Analytics from "../static/Analytics.svg";
 
+// Components and util
+import Auth from "../components/Auth";
+
 export default function NoAuliHome(props) {
   const [pageContent, setPageContent] = useState("default");
 
@@ -71,10 +74,10 @@ export default function NoAuliHome(props) {
     );
   }
   if (pageContent === "signup") {
-    content = <p>SIGNUP</p>;
+    content = <Auth type="signup" />;
   }
   if (pageContent === "login") {
-    content = <p>LOGIN</p>;
+    content = <Auth type="login" />;
   }
 
   return content;
