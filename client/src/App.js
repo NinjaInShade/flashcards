@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import "./App.css";
 
 // Components and util
-import Home from "./pages/Home";
+import Home from "./util/Home";
 import Navbar from "./components/Navbar";
-import Premium from "./pages/Premium";
+import Supporter from "./pages/Supporter";
 import Groups from "./pages/Groups";
 import { AuthProvider } from "./util/AuthContext";
 
@@ -16,8 +16,8 @@ export default function App() {
       <Route path="/" exact>
         <Home />
       </Route>
-      <Route path="/premium" exact>
-        <Premium />
+      <Route path="/supporter" exact>
+        <Supporter />
       </Route>
       <Route path="/:userId/groups" exact>
         <Groups />

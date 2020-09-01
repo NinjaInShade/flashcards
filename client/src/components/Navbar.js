@@ -38,8 +38,8 @@ export default function Navbar(props) {
     {
       icon: <i className="fas fa-certificate fa-2x" style={{ color: "#FFB532" }}></i>,
       colour: "#FFB532",
-      pageName: "Premium",
-      pageURL: "/premium",
+      pageName: "Supporter",
+      pageURL: "/supporter",
       requireAuth: false,
     },
   ];

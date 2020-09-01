@@ -71,12 +71,14 @@
 .buttons {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .btn {
   cursor: pointer;
   outline: none;
   border: none;
+  width: 35%;
   margin: 5px 10px 5px 10px;
   border-radius: 4px;
   padding: 20px 60px 20px 60px;
@@ -98,6 +100,10 @@
 
   .section {
     margin-top: 90px;
+  }
+
+  .btn {
+    width: auto;
   }
 }
 
