@@ -44,19 +44,18 @@ export default function Navbar(props) {
     },
   ];
 
-  const notAuthNavLinks = navLinks.filter((item) => item.requireAuth === false);
-  const userNavLinks = auth.isAuth ? navLinks : notAuthNavLinks;
-
   return (
     <React.Fragment>
       <div className="navbar">
-        {userNavLinks.map((item, index) => {
-          return (
-            <Link to={item.pageURL} key={index} style={path === item.pageURL ? { borderRadius: " 4px", borderBottom: `5px solid ${item.colour}` } : {}}>
-              {item.icon}
-            </Link>
-          );
-        })}
+        {navLinks
+          .filter((item) => (item.requireAuth ? auth.isAuth : true))
+          .map((item) => {
+            return (
+              <Link to={item.pageURL} key={item.pageURL} style={path === item.pageURL ? { borderRadius: " 4px", borderBottom: `5px solid ${item.colour}` } : {}}>
+                {item.icon}
+              </Link>
+            );
+          })}
       </div>
       {children}
     </React.Fragment>

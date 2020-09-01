@@ -1,5 +1,6 @@
 // Libraries , css and static files
 import React, { useContext } from "react";
+import "./Groups.css";
 import { Redirect } from "react-router-dom";
 
 // Components and util

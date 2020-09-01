@@ -15,8 +15,8 @@
 
 .formWrapper {
   border-radius: 5px;
-  padding: 40px 20px 40px 20px;
-  background-color: #e3dbfb;
+  padding: 40px 20px 0 20px;
+  background-color: #cac3e2;
   width: 40%;
   display: flex;
   flex-direction: column;
@@ -36,6 +36,21 @@
   color: rgb(101, 48, 150);
   font-weight: 550;
   font-size: 1.4vw;
+}
+
+.error {
+  font-size: 1vw !important;
+  margin-bottom: 3%;
+  font-weight: 550;
+  color: rgb(190, 36, 36) !important;
+}
+
+.validation {
+  margin-top: 3%;
+}
+
+.minLength {
+  font-size: 1vw;
 }
 
 .btn {
@@ -82,6 +97,10 @@
   .formWrapper {
     width: 65%;
   }
+
+  .error {
+    font-size: 1.5vw !important;
+  }
 }
 
 @media (max-width: 1000px) {
@@ -97,6 +116,14 @@
   .formWrapper label p {
     font-size: 3vw;
   }
+
+  .minLength {
+    font-size: 2vw;
+  }
+
+  .error {
+    font-size: 2vw !important;
+  }
 }
 
 @media (max-width: 500px) {
@@ -106,5 +133,13 @@
 
   .btn {
     padding: 15px 30px;
+  }
+
+  .minLength {
+    font-size: 2.5vw;
+  }
+
+  .error {
+    font-size: 3vw !important;
   }
 }
