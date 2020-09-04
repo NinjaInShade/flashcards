@@ -9,7 +9,6 @@ where the question is on one side, the answer on the other
 
 ### Backend
 
-- Authentication with oAuth2
 - Proper authorization
 - Relational database - groups will have many flashcards( one to many relation)
   Full backend/database model requirements can be found in the backend folder's README.
