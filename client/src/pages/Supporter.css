@@ -4,6 +4,7 @@
   font-weight: 700;
   font-size: 40px;
   color: rgb(101, 48, 150);
+  text-transform: uppercase;
 }
 
 .supporterWrapper {
@@ -73,14 +74,55 @@
   margin: 11% 0;
   font-weight: 600;
   font-size: 20px;
-  color: rgb(40, 4, 75);
+  color: rgb(0, 0, 0);
 }
 
-.supportBtn {
+p {
+  color: white;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.supportModalContent {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+}
+
+.supportModalContent * {
+  margin: 20px 0 !important;
+}
+
+input {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  padding: 3%;
+  width: 70%;
+  background-color: rgb(185, 141, 226);
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  font-weight: 550;
+  letter-spacing: 3px;
+}
+
+#supportBtn {
   width: 75%;
   display: block;
-  margin: auto;
+  margin: 0 auto;
   background-color: #f8b849;
+  color: black;
+  -webkit-box-shadow: 0px 0px 40px -30px rgba(0, 0, 0, 0.9);
+  -moz-box-shadow: 0px 0px 40px -30px rgba(0, 0, 0, 0.9);
+  box-shadow: 0px 0px 40px -30px rgba(0, 0, 0, 0.9);
+}
+
+#supportBtn:hover {
+  color: black;
+  background-color: #c59238;
 }
 
 @media (max-width: 2000px) {
@@ -96,6 +138,10 @@
 }
 
 @media (max-width: 1200px) {
+  p {
+    font-size: 1.5rem;
+  }
+
   .supporterWrapper div:nth-child(1) {
     width: 25%;
   }
@@ -115,6 +161,10 @@
   .benefitsList li {
     margin: 13% 0;
   }
+
+  #supportBtn {
+    width: 100%;
+  }
 }
 
 @media (max-height: 800px) {
@@ -124,6 +174,12 @@
 
   .title {
     margin-bottom: 16vh;
+  }
+}
+
+@media (max-height: 1100px) {
+  .benefitsList li {
+    margin: 10% 0;
   }
 }
 

@@ -16,6 +16,7 @@
 .formWrapper {
   border-radius: 5px;
   padding: 40px 20px 0 20px;
+  margin-bottom: 20px;
   background-color: #cac3e2;
   width: 40%;
   display: flex;
@@ -51,19 +52,6 @@
 
 .minLength {
   font-size: 1vw;
-}
-
-.btn {
-  cursor: pointer;
-  outline: none;
-  border: none;
-  border-radius: 4px;
-  padding: 20px 60px;
-  background-color: rgb(185, 141, 226);
-  color: rgb(101, 48, 150);
-  margin-top: 20px;
-  font-size: 20px;
-  font-weight: 550;
 }
 
 .formWrapper input {
@@ -131,7 +119,7 @@
     font-size: 4vw;
   }
 
-  .btn {
+  #authPageBtn {
     padding: 15px 30px;
   }
 

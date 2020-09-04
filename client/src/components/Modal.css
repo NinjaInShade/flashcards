@@ -10,12 +10,42 @@
 
 .modalContent {
   position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 35px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #9c72af;
   z-index: 20;
   border-radius: 6px;
-  width: 25%;
-  height: 25%;
+  min-width: 25%;
+  min-height: 40%;
+}
+
+.close {
+  cursor: pointer;
+  position: absolute;
+  top: 2%;
+  left: 2%;
+}
+
+@media (max-width: 1000px) {
+  .modalContent {
+    width: 50%;
+    height: 50%;
+  }
+
+  .close {
+    left: 4%;
+  }
+}
+
+@media (max-width: 700px) {
+  .modalContent {
+    width: 75%;
+    height: 20%;
+  }
 }

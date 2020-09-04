@@ -1,10 +1,16 @@
 // Libraries , css and static files
-import React from "react";
+import React, { useContext } from "react";
+import "./AuthHome.css";
+
+// Components and util
+import { AuthContext } from "../util/AuthContext";
 
 export default function AuthHome(props) {
+  const [auth] = useContext(AuthContext);
+
   const content = (
-    <div>
-      <h1>Auth Home!</h1>
+    <div className="contentColumn">
+      <h1>{auth.username}</h1>
     </div>
   );
   return content;

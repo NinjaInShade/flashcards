@@ -5,34 +5,35 @@ import SignupImg from "../static/Signup.svg";
 import LoginImg from "../static/Security.svg";
 
 // Components and util
+import Button from "../components/Button";
+import validateEmail from "../util/validateEmail";
+import validateUsername from "../util/validateUsername";
+import validatePassword from "../util/validatePassword";
 import { AuthContext } from "../util/AuthContext";
 
-const users = [{ email: "leon@gmail.com", password: "testpassword", userId: "5", premium: true }];
+const users = [{ email: "leon@gmail.com", username: "Leon!", password: "testpassword", userId: "5", premium: true }];
 
 export default function Auth(props) {
   const { type } = props;
 
   const [auth, setAuth] = useContext(AuthContext);
   const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState({});
 
   function signupHandler(e) {
     e.preventDefault();
     if (type === "signup") {
-      let newErrorState = { emailError: "", passwordError: "", createUserError: "", wrongUserError: "", serverError: "" };
-      // Email validation
-      const re = /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      if (!re.test(String(email).toLowerCase())) {
-        newErrorState.emailError = "* invalid email";
-      }
-      if (password.length < 8) {
-        newErrorState.passwordError = "* password not 8 characters or more";
-      }
+      let newErrorState = { emailError: "", usernameError: "", passwordError: "", createUserError: "", wrongUserError: "", serverError: "" };
+      newErrorState.emailError = validateEmail(email);
+      newErrorState.usernameError = validateUsername(username);
+      newErrorState.passwordError = validatePassword(password);
+
       setError(newErrorState);
 
-      if (error.emailError === "" && error.passwordError === "") {
-        console.log(`send email ${email} and password ${password} to backend as validated`);
+      if (newErrorState.emailError === "" && newErrorState.passwordError === "" && newErrorState.usernameError === "") {
+        console.log(`send email ${email} and ${username} and password ${password} to backend as validated`);
         // Send to backend, if successfull, redirect to home page, if not set createUserError/serverError
         setTimeout(() => {
           setEmail("");
@@ -43,42 +44,28 @@ export default function Auth(props) {
     }
 
     if (type === "login") {
-      let newErrorState = { emailError: "", passwordError: "", createUserError: "", serverError: "" };
-      // Empty fields check
-      if (email === "" && password === "") {
-        newErrorState.emailError = "* Provide an email";
-        newErrorState.passwordError = "* Provide password";
-        setError(newErrorState);
-      }
-      if (email === "") {
-        newErrorState.emailError = "* Provide an email";
-        setError(newErrorState);
-      }
-
-      if (password === "") {
-        newErrorState.passwordError = "* Provide password";
-        setError(newErrorState);
-      }
+      let newErrorState = { emailError: "", usernameError: "", passwordError: "", createUserError: "", wrongUserError: "", serverError: "" };
+      newErrorState.emailError = validateEmail(email);
+      newErrorState.passwordError = validatePassword(password);
+      setError(newErrorState);
 
       // Find user in db
-      if (email !== "" && password !== "") {
+      if (newErrorState.emailError === "" && newErrorState.passwordError === "") {
         const currentUser = users.filter((user) => {
           return user.email === email;
         });
 
         if (currentUser.length < 1) {
           newErrorState.emailError = "* Not a user";
-          setError(newErrorState);
-          return;
+          return setError(newErrorState);
         }
 
         if (currentUser[0].password !== password) {
           newErrorState.passwordError = "* Incorrect password";
-          setError(newErrorState);
-          return;
+          return setError(newErrorState);
         }
 
-        setAuth({ ...auth, isAuth: true, userId: currentUser[0].userId, premium: currentUser[0].premium });
+        setAuth({ ...auth, isAuth: true, userId: currentUser[0].userId, premium: currentUser[0].premium, username: currentUser[0].username });
       }
     }
   }
@@ -101,6 +88,20 @@ export default function Auth(props) {
           <p className="error">{error.emailError}</p>
         </label>
 
+        {type === "signup" && (
+          <label>
+            <p>Username</p>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+            />
+            <p className="error">{error.usernameError}</p>
+          </label>
+        )}
+
         <label>
           <p>
             Password{" "}
@@ -118,9 +119,9 @@ export default function Auth(props) {
           <p className="error">{error.passwordError}</p>
         </label>
 
-        <button className="btn" onClick={signupHandler}>
+        <Button id="authPageBtn" onClick={signupHandler}>
           {type === "signup" ? "Signup" : "Login"}
-        </button>
+        </Button>
         <p className="error validation">{error.createUserError || error.wrongUserError || error.serverError}</p>
       </form>
     </div>

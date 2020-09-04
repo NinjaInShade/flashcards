@@ -5,6 +5,7 @@ import UI from "../static/UI.svg";
 import Analytics from "../static/Analytics.svg";
 
 // Components and util
+import Button from "../components/Button";
 import Auth from "../components/Auth";
 
 export default function NoAuliHome(props) {
@@ -63,12 +64,12 @@ export default function NoAuliHome(props) {
         </div>
 
         <div className="buttons">
-          <button className="btn" onClick={() => setPageContent("signup")}>
+          <Button id="authBtn" onClick={() => setPageContent("signup")}>
             Sign up
-          </button>
-          <button className="btn" onClick={() => setPageContent("login")}>
+          </Button>
+          <Button id="authBtn" onClick={() => setPageContent("login")}>
             Login
-          </button>
+          </Button>
         </div>
       </div>
     );
