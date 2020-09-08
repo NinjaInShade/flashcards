@@ -4,8 +4,8 @@ import "./Supporter.css";
 import supporterBadge from "../static/supporterBadge.png";
 
 // Components and util
-import Button from "../components/Button";
-import Modal from "../components/Modal";
+import Button from "../components/util/Button";
+import Modal from "../components/util/Modal";
 
 export default function Supporter() {
   const [modal, setModal] = useState(false);
@@ -39,7 +39,7 @@ export default function Supporter() {
 
   return (
     <React.Fragment>
-      <Modal show={modal} setShow={setModal}>
+      <Modal show={modal} setShow={setModal} position="center">
         <div className="supportModalContent">
           <p>All donations are truly appreciated</p>
           <input type="text" placeholder="Please enter an amount" value={donateAmount} onChange={changeHandler} />

@@ -1,0 +1,165 @@
+.addGroupContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+  border-radius: 8px;
+  padding: 100px;
+  background-color: #6a1b9a;
+  cursor: pointer;
+}
+
+.addGroupIcon {
+  position: absolute;
+  width: 40%;
+  height: 40%;
+}
+
+.groupIcon {
+  position: absolute;
+  width: 60%;
+  height: 60%;
+}
+
+/* Modal styling */
+.nameGroup {
+  font-weight: bold;
+  font-size: 35px;
+}
+
+.iconSelectionGrid {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  max-height: 60%;
+  overflow-y: scroll;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #9c72af;
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 12px;
+  background-color: #9c72af;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #371447;
+}
+
+.iconPreviewCard {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  margin: 10px;
+  border-radius: 8px;
+  padding: 80px;
+  background-color: #b98de2;
+  cursor: pointer;
+}
+
+.iconPreviewCard:hover {
+  background-color: #5f3685;
+}
+
+.iconPreviewCardSelected {
+  background-color: #5f3685;
+}
+
+.addGroupInput {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  padding: 2%;
+  width: 100%;
+  background-color: rgb(185, 141, 226);
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  font-weight: 550;
+  letter-spacing: 1px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.errorText {
+  font-size: 1vw !important;
+  margin-bottom: 3%;
+  font-weight: 550;
+  color: rgb(190, 36, 36) !important;
+}
+
+#addGroupBtn {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 1450px) {
+  .iconSelectionGrid {
+    width: 65%;
+  }
+
+  .errorText {
+    font-size: 1.5vw !important;
+  }
+}
+
+@media (max-width: 1150px) {
+  .iconSelectionGrid {
+    width: 100%;
+  }
+
+  .errorText {
+    font-size: 2vw !important;
+  }
+}
+
+@media (max-width: 750px) {
+  .iconPreviewCard {
+    padding: 63px;
+  }
+}
+
+@media (max-width: 600px) {
+  .iconPreviewCard {
+    padding: 60px;
+  }
+
+  .iconSelectionGrid {
+    max-height: 75%;
+  }
+}
+
+@media (max-width: 550px) {
+  .nameGroup {
+    font-size: 23px;
+  }
+
+  .errorText {
+    font-size: 3vw !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .nameGroup {
+    font-size: 20px;
+  }
+
+  .iconPreviewCard {
+    padding: 40px;
+  }
+}

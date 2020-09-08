@@ -5,7 +5,7 @@ import UI from "../static/UI.svg";
 import Analytics from "../static/Analytics.svg";
 
 // Components and util
-import Button from "../components/Button";
+import Button from "../components/util/Button";
 import Auth from "../components/Auth";
 
 export default function NoAuliHome(props) {

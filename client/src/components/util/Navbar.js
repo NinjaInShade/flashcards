@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import "./Navbar.css";
 
 // Components and util
-import { AuthContext } from "../util/AuthContext";
+import { AuthContext } from "../../util/AuthContext";
 
 export default function Navbar(props) {
   const { children } = props;
@@ -18,7 +18,7 @@ export default function Navbar(props) {
         setPath(location.pathname);
       }
     });
-  }, [history, path]);
+  }, [history, path, auth.userId]);
 
   const navLinks = [
     {
@@ -32,7 +32,7 @@ export default function Navbar(props) {
       icon: <i className="fas fa-layer-group fa-2x" style={{ color: "#8668fc" }}></i>,
       colour: "#8668fc",
       pageName: "Groups",
-      pageURL: "/:userId/groups",
+      pageURL: `/${auth.userId}/groups`,
       requireAuth: true,
     },
     {
@@ -61,3 +61,5 @@ export default function Navbar(props) {
     </React.Fragment>
   );
 }
+
+// TOOD: FIX NAVBAR GROUP ID PAGE, CHANGE ICONS TO ${name}: SVG IMPORT

@@ -4,7 +4,7 @@ import "./AuthHome.css";
 
 // Components and util
 import { AuthContext } from "../util/AuthContext";
-import DonutChart from "../components/DonutChart";
+import DonutChart from "../components/util/DonutChart";
 
 export default function AuthHome(props) {
   const [auth] = useContext(AuthContext);

@@ -5,7 +5,7 @@ import SignupImg from "../static/Signup.svg";
 import LoginImg from "../static/Security.svg";
 
 // Components and util
-import Button from "../components/Button";
+import Button from "../components/util/Button";
 import validateEmail from "../util/validateEmail";
 import validateUsername from "../util/validateUsername";
 import validatePassword from "../util/validatePassword";
