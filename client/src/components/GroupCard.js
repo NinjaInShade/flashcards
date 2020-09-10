@@ -11,7 +11,7 @@ export default function GroupCard(props) {
   const [hovered, setHovered] = useState(false);
 
   function redirectHandler() {
-    window.location.href = `/${auth.userId}/${id}`;
+    window.location.href = `/user/${auth.userId}/group/${id}`;
   }
 
   return (

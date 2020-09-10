@@ -33,10 +33,10 @@ export default function App() {
       <Route path="/supporter" exact>
         <Supporter />
       </Route>
-      <Route path="/:userId/groups" exact>
+      <Route path="/user/:userId/group" exact>
         <Groups />
       </Route>
-      <Route path="/:userId/:groupId">
+      <Route path="/user/:userId/group/:groupId">
         <Group />
       </Route>
       <Route path="*">

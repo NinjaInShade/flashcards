@@ -126,12 +126,12 @@
     order: 2;
   }
 
-  .section {
+  /* .section {
     flex-direction: column;
     height: auto;
     align-items: center;
     margin-top: 20px;
-  }
+  } */
 }
 
 @media (max-width: 535px) {

@@ -12,6 +12,4 @@ import bird from "../static/groups/bird.svg";
 import spider from "../static/groups/spider.svg";
 import lion from "../static/groups/lion.svg";
 
-const icons = [maths, chemistry, physics, geography, english, biology, gym, cooking, computer, bird, spider, lion];
-
-export { icons };
+export const icons = { maths: maths, chemistry: chemistry, physics: physics, geography: geography, english: english, biology: biology, gym: gym, cooking: cooking, computer: computer, bird: bird, spider: spider, lion: lion };

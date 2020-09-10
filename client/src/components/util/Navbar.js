@@ -1,6 +1,6 @@
 // Libraries , css and static files
 import React, { useState, useContext, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import "./Navbar.css";
 
 // Components and util
@@ -27,13 +27,15 @@ export default function Navbar(props) {
       pageName: "Home",
       pageURL: "/",
       requireAuth: false,
+      exact: true,
     },
     {
       icon: <i className="fas fa-layer-group fa-2x" style={{ color: "#8668fc" }}></i>,
       colour: "#8668fc",
       pageName: "Groups",
-      pageURL: `/${auth.userId}/groups`,
+      pageURL: `/user/${auth.userId}/group`,
       requireAuth: true,
+      exact: false,
     },
     {
       icon: <i className="fas fa-certificate fa-2x" style={{ color: "#FFB532" }}></i>,
@@ -41,6 +43,7 @@ export default function Navbar(props) {
       pageName: "Supporter",
       pageURL: "/supporter",
       requireAuth: false,
+      exact: true,
     },
   ];
 
@@ -51,9 +54,9 @@ export default function Navbar(props) {
           .filter((item) => (item.requireAuth ? auth.isAuth : true))
           .map((item) => {
             return (
-              <Link to={item.pageURL} key={item.pageURL} style={path === item.pageURL ? { borderRadius: " 4px", borderBottom: `5px solid ${item.colour}` } : {}}>
+              <NavLink to={item.pageURL} key={item.pageURL} activeStyle={{ borderRadius: " 4px", borderBottom: `5px solid ${item.colour}` }} exact={item.exact}>
                 {item.icon}
-              </Link>
+              </NavLink>
             );
           })}
       </div>
@@ -61,5 +64,3 @@ export default function Navbar(props) {
     </React.Fragment>
   );
 }
-
-// TOOD: FIX NAVBAR GROUP ID PAGE, CHANGE ICONS TO ${name}: SVG IMPORT

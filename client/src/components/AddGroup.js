@@ -23,8 +23,8 @@ export default function AddGroup() {
     setIconName("");
     setError({});
     setShow(true);
-    icons.forEach(function (item) {
-      document.getElementById(item.toString()).classList.remove("iconPreviewCardSelected");
+    Object.entries(icons).forEach(([name]) => {
+      document.getElementById(name).classList.remove("iconPreviewCardSelected");
     });
   }
 
@@ -47,12 +47,12 @@ export default function AddGroup() {
   }
 
   function iconClickHandler(icon) {
-    icons.forEach(function (item) {
-      if (item === icon) {
+    Object.entries(icons).forEach(([name, icon]) => {
+      if (name === icon) {
         return;
       }
 
-      document.getElementById(item).classList.remove("iconPreviewCardSelected");
+      document.getElementById(name).classList.remove("iconPreviewCardSelected");
     });
 
     setIconName(icon);
@@ -69,9 +69,9 @@ export default function AddGroup() {
         </div>
         <h2 className="nameGroup">Pick an icon for your group</h2>
         <div className="iconSelectionGrid scrollbar">
-          {icons.map((icon) => {
+          {Object.entries(icons).map(([name, icon]) => {
             return (
-              <div className="iconPreviewCard" id={icon.toString()} key={icon.toString()} onClick={() => iconClickHandler(icon.toString())}>
+              <div className="iconPreviewCard" id={name} key={name} onClick={() => iconClickHandler(name)}>
                 <img src={icon} alt="icon" className="groupIcon" />
               </div>
             );
