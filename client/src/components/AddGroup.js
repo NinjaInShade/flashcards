@@ -1,22 +1,19 @@
 // Libraries , css and static files
 import React, { useState } from "react";
 import "./AddGroup.css";
-import addIcon from "../static/plus.svg";
-import addIconActive from "../static/plusActive.svg";
 
 // Components and util
 import { icons } from "../util/icons";
 import Modal from "./util/Modal";
 import Button from "./util/Button";
+import Add from "./util/Add";
 
 export default function AddGroup() {
   const [groupName, setGroupName] = useState("");
   const [iconName, setIconName] = useState("");
 
   const [error, setError] = useState({});
-  const [active, setActive] = useState(false);
   const [show, setShow] = useState(false);
-  const icon = active ? addIconActive : addIcon;
 
   function openGroupHandler() {
     setGroupName("");
@@ -82,9 +79,7 @@ export default function AddGroup() {
         </Button>
         <p className="errorText">{error.groups}</p>
       </Modal>
-      <div className="addGroupContainer" style={active ? { backgroundColor: "#792ea8" } : {}} onMouseEnter={() => setActive(true)} onMouseLeave={() => setActive(false)}>
-        <img src={icon} alt="add icon" className="addGroupIcon" onClick={openGroupHandler} />
-      </div>
+      <Add onClick={openGroupHandler} />
     </React.Fragment>
   );
 }

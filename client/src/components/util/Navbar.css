@@ -21,6 +21,6 @@
 
 @media (max-width: 400px) {
   .navbar * {
-    padding: 20px 10px 20px 10px;
+    padding: 20px 10px;
   }
 }

@@ -17,11 +17,16 @@ export function AuthProvider(props) {
       {
         name: "Maths",
         icon: icons.maths,
-        id: 1,
+        id: "1",
         flashcards: [
           {
             question: "1+1",
             answer: "2",
+            completed: false,
+          },
+          {
+            question: "1+4",
+            answer: "5",
             completed: false,
           },
         ],
@@ -29,7 +34,7 @@ export function AuthProvider(props) {
       {
         name: "Chemistry",
         icon: icons.chemistry,
-        id: 2,
+        id: "2",
         flashcards: [
           {
             question: "1+1",
@@ -41,7 +46,7 @@ export function AuthProvider(props) {
       {
         name: "Phsyics",
         icon: icons.physics,
-        id: 3,
+        id: "3",
         flashcards: [
           {
             question: "1+1",
