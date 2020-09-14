@@ -33,7 +33,7 @@ export default function Collections() {
   const [auth] = useContext(AuthContext);
   // eslint-disable-next-line
   const [show, setShow] = useState(false);
-  const { groupId } = useParams();
+  const { collectionId } = useParams();
 
   const content = (
     <Column>
@@ -41,9 +41,9 @@ export default function Collections() {
         <Add onClick={() => setShow(true)} />
       </Row>
       <Row>
-        {auth.groups
-          .filter((group) => {
-            return group.id === groupId;
+        {auth.collections
+          .filter((collection) => {
+            return collection.id === collectionId;
           })[0]
           .flashcards.map((flashcard) => {
             return <Flashcard frontContent={flashcard.question} backContent={flashcard.answer} key={flashcard.question} />;

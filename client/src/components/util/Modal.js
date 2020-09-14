@@ -32,6 +32,7 @@ const ModalContent = styled.div`
   width: 900px;
   height: 650px;
   box-shadow: ${(props) => (props.asOverlay ? "" : "0px 5px 16px 0px rgba(0,0,0,0.25)")};
+  tansition: 0.7 ease-in-out;
 
   @media ${device.laptop} {
     width: 100%;
