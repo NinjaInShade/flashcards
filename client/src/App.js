@@ -4,12 +4,12 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import "./App.css";
 
 // Components and util
-import Home from "./util/Home";
+import Home from "./utils/Home";
 import Navbar from "./components/util/Navbar";
 import Supporter from "./pages/Supporter";
-import Groups from "./pages/Groups";
-import Group from "./pages/Group";
-import { AuthProvider } from "./util/AuthContext";
+import Groups from "./pages/Collections";
+import Group from "./pages/Collection";
+import { AuthProvider } from "./utils/AuthContext";
 
 // TODO: CREDIT ICONS
 /* <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */
@@ -27,18 +27,10 @@ import { AuthProvider } from "./util/AuthContext";
 export default function App() {
   const routes = (
     <Switch>
-      <Route path="/" exact>
-        <Home />
-      </Route>
-      <Route path="/supporter" exact>
-        <Supporter />
-      </Route>
-      <Route path="/user/:userId/group" exact>
-        <Groups />
-      </Route>
-      <Route path="/user/:userId/group/:groupId">
-        <Group />
-      </Route>
+      <Route path="/" component={Home} exact />
+      <Route path="/supporter" component={Supporter} exact />
+      <Route path="/user/:userId/group" component={Groups} exact />
+      <Route path="/user/:userId/group/:groupId" component={Group} exact />
       <Route path="*">
         <Redirect to="/" />
       </Route>

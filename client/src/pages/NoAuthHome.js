@@ -1,84 +1,78 @@
 // Libraries , css and static files
 import React, { useState } from "react";
-import "./NoAuthHome.css";
-import UI from "../static/UI.svg";
-import Analytics from "../static/Analytics.svg";
+import styled from "styled-components";
 
 // Components and util
+import Modal from "../components/util/Modal";
 import Button from "../components/util/Button";
 import Auth from "../components/Auth";
+import { typography, device } from "../utils/globalCSS";
+import authenticate from "../static/authenticate.svg";
+
+const Image = styled.img`
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 30px;
+  margin-left: 35px;
+
+  @media ${device.laptop} {
+    margin-left: 0;
+  }
+`;
+
+const Heading = styled.h1`
+  font-size: ${typography.h1};
+  margin-bottom: 40px;
+  text-align: center;
+
+  @media ${device.mobileL} {
+    font-size: ${typography.h3};
+  }
+`;
+
+const ButtonsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+
+  * {
+    margin-right: 10px;
+  }
+
+  @media ${device.mobileL} {
+    flex-direction: column;
+
+    * {
+      margin-bottom: 10px;
+    }
+  }
+`;
 
 export default function NoAuliHome(props) {
   const [pageContent, setPageContent] = useState("default");
+  const [show, setShow] = useState(true);
 
   let content;
   if (pageContent === "default") {
     content = (
-      <div className="content">
-        <h1 className="heading">Once logged in...</h1>
-        <div className="section">
-          <h2 className="mobileHeading">You gain access to multiple features!</h2>
-          <div className="img">
-            <img src={UI} alt="ui" className="svg" />
-          </div>
-          <div className="text">
-            <h2>You gain access to multiple features!</h2>
-            <ul className="features ">
-              <li>
-                <i className="fas fa-angle-double-right"></i>Create groups
-              </li>
-              <li>
-                <i className="fas fa-angle-double-right"></i>Create flashcards
-              </li>
-              <li>
-                <i className="fas fa-angle-double-right"></i>Test and improve your memory!
-              </li>
-              <li>
-                <i className="fas fa-angle-double-right"></i>Track your progress
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="section order">
-          <h2 className="mobileHeading">Track your progress!</h2>
-          <div className="text">
-            <h2>Track your progress!</h2>
-            <ul className="features">
-              <li>
-                <i className="fas fa-angle-double-right"></i>View overall stats
-              </li>
-              <li>
-                <i className="fas fa-angle-double-right"></i>View completion % per group
-              </li>
-              <li>
-                <i className="fas fa-angle-double-right"></i>See your groups completed
-              </li>
-              <li>
-                <i className="fas fa-angle-double-right"></i>Be notified of common wrong answers
-              </li>
-            </ul>
-          </div>
-          <div className="img">
-            <img src={Analytics} alt="Analytics" className="svg" />
-          </div>
-        </div>
-
-        <div className="buttons">
-          <Button id="authBtn" onClick={() => setPageContent("signup")}>
+      <Modal show={show} setShow={setShow} style={{ marginTop: "20px" }}>
+        <Image src={authenticate} alt="authentication" />
+        <Heading>Sign up for full access and features!</Heading>
+        <ButtonsContainer>
+          <Button type="secondary" onClick={() => setPageContent("signup")}>
             Sign up
           </Button>
-          <Button id="authBtn" onClick={() => setPageContent("login")}>
+          <Button type="tertiary" onClick={() => setPageContent("signin")}>
             Login
           </Button>
-        </div>
-      </div>
+        </ButtonsContainer>
+      </Modal>
     );
   }
   if (pageContent === "signup") {
-    content = <Auth type="signup" />;
+    content = <Auth type="signup" pageContent={pageContent} setPageContent={setPageContent} />;
   }
-  if (pageContent === "login") {
-    content = <Auth type="login" />;
+  if (pageContent === "signin") {
+    content = <Auth type="signin" pageContent={pageContent} setPageContent={setPageContent} />;
   }
 
   return content;

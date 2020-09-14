@@ -3,20 +3,20 @@ import React, { useState } from "react";
 import "./AddGroup.css";
 
 // Components and util
-import { icons } from "../util/icons";
+import { icons } from "../utils/icons";
 import Modal from "./util/Modal";
 import Button from "./util/Button";
 import Add from "./util/Add";
 
-export default function AddGroup() {
-  const [groupName, setGroupName] = useState("");
+export default function AddCollection() {
+  const [collectionName, setCollectionName] = useState("");
   const [iconName, setIconName] = useState("");
 
   const [error, setError] = useState({});
   const [show, setShow] = useState(false);
 
   function openGroupHandler() {
-    setGroupName("");
+    setCollectionName("");
     setIconName("");
     setError({});
     setShow(true);
@@ -26,19 +26,19 @@ export default function AddGroup() {
   }
 
   function addGroupHandler() {
-    let newError = { name: "", groups: "" };
-    if (groupName === "" || groupName.length > 15) {
+    let newError = { name: "", collections: "" };
+    if (collectionName === "" || collectionName.length > 15) {
       newError.name = "* Please provide a name";
     }
 
     if (iconName === "") {
-      newError.groups = "* Please choose a group";
+      newError.collections = "* Please choose a collection";
     }
 
     setError(newError);
 
-    if (newError.name === "" && newError.groups === "") {
-      console.log(`sending ${groupName} and ${iconName} to backend`);
+    if (newError.name === "" && newError.collections === "") {
+      console.log(`sending ${collectionName} and ${iconName} to backend`);
       setShow(false);
     }
   }
@@ -58,10 +58,10 @@ export default function AddGroup() {
 
   return (
     <React.Fragment>
-      <Modal show={show} setShow={setShow} position="flex-start" w="75%" h="75%">
+      <Modal show={show} setShow={setShow}>
         <div className="inputGroup">
           <h2 className="nameGroup">Name your group</h2>
-          <input type="text" className="addGroupInput" maxLength="15" value={groupName} onChange={(e) => setGroupName(e.target.value)} />
+          <input type="text" className="addGroupInput" maxLength="15" value={collectionName} onChange={(e) => setCollectionName(e.target.value)} />
           <p className="errorText">{error.name}</p>
         </div>
         <h2 className="nameGroup">Pick an icon for your group</h2>
@@ -74,9 +74,7 @@ export default function AddGroup() {
             );
           })}
         </div>
-        <Button id="addGroupBtn" onClick={addGroupHandler}>
-          Create group
-        </Button>
+        <Button onClick={addGroupHandler}>Create group</Button>
         <p className="errorText">{error.groups}</p>
       </Modal>
       <Add onClick={openGroupHandler} />

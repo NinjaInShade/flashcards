@@ -1,28 +1,99 @@
 // Libraries , css and static files
-import React, { useState, useContext } from "react";
-import "./Auth.css";
-import SignupImg from "../static/Signup.svg";
-import LoginImg from "../static/Security.svg";
+import React, { useState, useContext, useEffect } from "react";
+import styled from "styled-components";
+import signin from "../static/signin.svg";
+import signup from "../static/signup.svg";
 
 // Components and util
+import { typography, device } from "../utils/globalCSS";
+import Input from "../components/util/Input";
+import Modal from "../components/util/Modal";
 import Button from "../components/util/Button";
-import validateEmail from "../util/validateEmail";
-import validateUsername from "../util/validateUsername";
-import validatePassword from "../util/validatePassword";
-import { AuthContext } from "../util/AuthContext";
+import validateEmail from "../utils/validateEmail";
+import validateUsername from "../utils/validateUsername";
+import validatePassword from "../utils/validatePassword";
+import { AuthContext } from "../utils/AuthContext";
 
 const users = [{ email: "leon@gmail.com", username: "Leon!", password: "testpassword", userId: "5", premium: true }];
 
-export default function Auth(props) {
-  const { type } = props;
+const MainContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+`;
 
+const InnerContainer = styled.div`
+  width: 50%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const ContentContainer = styled(InnerContainer)`
+  justify-content: space-between;
+  align-items: flex-start;
+
+  @media ${device.tablet} {
+    width: 100%;
+  }
+`;
+
+const Image = styled.img`
+  max-width: 100%;
+  height: auto;
+`;
+
+const ImageContainer = styled(InnerContainer)`
+  justify-content: flex-end;
+
+  @media ${device.tablet} {
+    display: none;
+  }
+`;
+
+const Inputs = styled.div`
+  width: 100%;
+`;
+
+const Heading = styled.h1`
+  font-size: ${typography.h1};
+`;
+
+const ButtonsContainer = styled.div`
+  width: 96%;
+  display: flex;
+  justify-content: flex-start;
+
+  * {
+    margin-right: 10px;
+  }
+
+  @media ${device.mobileL} {
+    flex-direction: column;
+    align-items: flex-start;
+
+    * {
+      margin: 5px 0;
+    }
+  }
+`;
+
+export default function Auth(props) {
+  const { type, pageContent, setPageContent } = props;
   const [auth, setAuth] = useContext(AuthContext);
+
+  const [show, setShow] = useState(true);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState({});
 
-  function signupHandler(e) {
+  useEffect(() => {
+    setError({});
+  }, [pageContent]);
+
+  function authHandler(e) {
     e.preventDefault();
     if (type === "signup") {
       let newErrorState = { emailError: "", usernameError: "", passwordError: "", createUserError: "", wrongUserError: "", serverError: "" };
@@ -43,7 +114,7 @@ export default function Auth(props) {
       }
     }
 
-    if (type === "login") {
+    if (type === "signin") {
       let newErrorState = { emailError: "", usernameError: "", passwordError: "", createUserError: "", wrongUserError: "", serverError: "" };
       newErrorState.emailError = validateEmail(email);
       newErrorState.passwordError = validatePassword(password);
@@ -65,65 +136,32 @@ export default function Auth(props) {
           return setError(newErrorState);
         }
 
-        setAuth({ ...auth, isAuth: true, userId: currentUser[0].userId, premium: currentUser[0].premium, username: currentUser[0].username });
+        setAuth({ ...auth, isAuth: true, userId: currentUser[0].userId, supporter: currentUser[0].supporter, username: currentUser[0].username });
       }
     }
   }
 
   return (
-    <div className="wrapper">
-      <div className="imgWrapper">
-        <img src={type === "signup" ? SignupImg : LoginImg} alt="Data" />
-      </div>
-      <form className="formWrapper">
-        <label>
-          <p>Email</p>
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
-          <p className="error">{error.emailError}</p>
-        </label>
-
-        {type === "signup" && (
-          <label>
-            <p>Username</p>
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => {
-                setUsername(e.target.value);
-              }}
-            />
-            <p className="error">{error.usernameError}</p>
-          </label>
-        )}
-
-        <label>
-          <p>
-            Password{" "}
-            <span style={type === "signup" ? {} : { display: "none" }} className="minLength">
-              (Min 8 characters)
-            </span>
-          </p>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-          <p className="error">{error.passwordError}</p>
-        </label>
-
-        <Button id="authPageBtn" onClick={signupHandler}>
-          {type === "signup" ? "Signup" : "Login"}
-        </Button>
-        <p className="error validation">{error.createUserError || error.wrongUserError || error.serverError}</p>
-      </form>
-    </div>
+    <Modal show={show} setShow={setShow}>
+      <MainContainer>
+        <ContentContainer>
+          <Heading>{pageContent === "signup" ? "Sign up" : "Sign in"}</Heading>
+          <Inputs>
+            {pageContent === "signup" && <Input label="Username" maxLength="15" margin="15px 0" onChange={(e) => setUsername(e.target.value)} value={username} error={[error.usernameError, error.createUserError]} width="96%" />}
+            <Input label="Email" margin="15px 0" onChange={(e) => setEmail(e.target.value)} value={email} error={[error.emailError, error.wrongUserError, error.serverError]} width="96%" />
+            <Input label="Password" password margin="15px 0 45px 0" onChange={(e) => setPassword(e.target.value)} value={password} error={[error.passwordError]} width="96%" />
+            <ButtonsContainer>
+              <Button type="tertiary" onClick={pageContent === "signup" ? () => setPageContent("signin") : () => setPageContent("signup")}>
+                {pageContent === "signup" ? "Login" : "Sign up"}
+              </Button>
+              <Button type="secondary" onClick={authHandler}>
+                {pageContent === "signup" ? "Create account" : "Login"}
+              </Button>
+            </ButtonsContainer>
+          </Inputs>
+        </ContentContainer>
+        <ImageContainer>{pageContent === "signup" ? <Image src={signup} alt="signup" style={{ marginTop: "60px" }} /> : <Image src={signin} alt="signin" style={{ marginTop: "60px" }} />}</ImageContainer>
+      </MainContainer>
+    </Modal>
   );
 }

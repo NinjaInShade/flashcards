@@ -39,7 +39,7 @@ export default function Supporter() {
 
   return (
     <React.Fragment>
-      <Modal show={modal} setShow={setModal} position="center">
+      <Modal show={modal} setShow={setModal} asOverlay>
         <div className="supportModalContent">
           <p>All donations are truly appreciated</p>
           <input type="text" placeholder="Please enter an amount" value={donateAmount} onChange={changeHandler} />
@@ -71,7 +71,7 @@ export default function Supporter() {
               <i className="fas fa-star icon"></i>Send me ideas you'd like me to add
             </li>
           </ul>
-          <Button id="supportBtn" onClick={buttonHandler}>
+          <Button onClick={buttonHandler} type="secondary" style={{ margin: "auto" }}>
             Support me
           </Button>
         </div>

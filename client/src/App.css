@@ -1,5 +1,7 @@
 * {
   margin: 0;
+  font-weight: normal;
+  box-sizing: border-box;
 }
 
 .scrollbar::-webkit-scrollbar-track {

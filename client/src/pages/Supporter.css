@@ -1,7 +1,6 @@
 .title {
   text-align: center;
   margin: 2vh 0 10vh 0;
-  font-weight: 700;
   font-size: 40px;
   color: rgb(101, 48, 150);
   text-transform: uppercase;
@@ -72,15 +71,8 @@
 
 .benefitsList li {
   margin: 11% 0;
-  font-weight: 600;
   font-size: 20px;
   color: rgb(0, 0, 0);
-}
-
-p {
-  color: white;
-  font-weight: 600;
-  font-size: 2rem;
 }
 
 .supportModalContent {
@@ -94,35 +86,6 @@ p {
 
 .supportModalContent * {
   margin: 20px 0 !important;
-}
-
-input {
-  outline: none;
-  border: none;
-  border-radius: 5px;
-  padding: 3%;
-  width: 70%;
-  background-color: rgb(185, 141, 226);
-  color: rgb(0, 0, 0);
-  font-size: 20px;
-  font-weight: 550;
-  letter-spacing: 3px;
-}
-
-#supportBtn {
-  width: 75%;
-  display: block;
-  margin: 0 auto;
-  background-color: #f8b849;
-  color: black;
-  -webkit-box-shadow: 0px 0px 40px -30px rgba(0, 0, 0, 0.9);
-  -moz-box-shadow: 0px 0px 40px -30px rgba(0, 0, 0, 0.9);
-  box-shadow: 0px 0px 40px -30px rgba(0, 0, 0, 0.9);
-}
-
-#supportBtn:hover {
-  color: black;
-  background-color: #c59238;
 }
 
 @media (max-width: 2000px) {
@@ -160,10 +123,6 @@ input {
 
   .benefitsList li {
     margin: 13% 0;
-  }
-
-  #supportBtn {
-    width: 100%;
   }
 }
 

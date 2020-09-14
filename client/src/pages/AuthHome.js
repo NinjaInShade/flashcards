@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import "./AuthHome.css";
 
 // Components and util
-import { AuthContext } from "../util/AuthContext";
+import { AuthContext } from "../utils/AuthContext";
 import DonutChart from "../components/util/DonutChart";
 
 export default function AuthHome(props) {

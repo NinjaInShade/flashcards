@@ -12,9 +12,9 @@ const AddContainer = styled.div`
   width: auto;
   height: auto;
   border-radius: 8px;
-  padding: 100px;
   background-color: #6a1b9a;
   cursor: pointer;
+  padding: ${(props) => props.padding || "100px"};
 `;
 
 const AddIcon = styled.img`
@@ -24,13 +24,13 @@ const AddIcon = styled.img`
 `;
 
 export default function Add(props) {
-  const { onClick } = props;
+  const { onClick, padding } = props;
 
   const [active, setActive] = useState(false);
   const icon = active ? addIconActive : addIcon;
 
   return (
-    <AddContainer style={active ? { backgroundColor: "#792ea8" } : {}} onMouseEnter={() => setActive(true)} onMouseLeave={() => setActive(false)}>
+    <AddContainer style={active ? { backgroundColor: "#792ea8" } : {}} onMouseEnter={() => setActive(true)} onMouseLeave={() => setActive(false)} padding={padding}>
       <AddIcon src={icon} alt="add icon" onClick={onClick} />
     </AddContainer>
   );

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Redirect, useParams } from "react-router-dom";
 
 // Components and util
-import { AuthContext } from "../util/AuthContext";
+import { AuthContext } from "../utils/AuthContext";
 import Flashcard from "../components/Flashcard";
 import Add from "../components/util/Add";
 
@@ -29,12 +29,11 @@ const Row = styled.div`
   flex-wrap: wrap;
 `;
 
-export default function Group() {
+export default function Collections() {
   const [auth] = useContext(AuthContext);
   // eslint-disable-next-line
   const [show, setShow] = useState(false);
-  // eslint-disable-next-line
-  const { userId, groupId } = useParams();
+  const { groupId } = useParams();
 
   const content = (
     <Column>

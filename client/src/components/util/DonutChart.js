@@ -1,6 +1,42 @@
 // Libraries , css and static files
 import React from "react";
-import "./DonutChart.css";
+import styled from "styled-components";
+
+const DonutChartSvg = styled.svg`
+  border-radius: 50%;
+  display: block;
+`;
+
+const DonutChartTrack = styled.circle`
+  fill: transparent;
+  stroke: #b88bd4;
+  stroke-width: 26;
+  r: ${(props) => props.r};
+  cx: ${(props) => props.cx};
+  cy: ${(props) => props.cy};
+  transform: ${(props) => props.transform};
+`;
+
+const DonutChartIndicator = styled(DonutChartTrack)`
+  fill: transparent;
+  stroke: #6a1b9a;
+  stroke-width: 26;
+  stroke-dasharray: 0 10000;
+  transition: stroke-dasharray 0.3s ease;
+`;
+
+const DonutChartText = styled.text`
+  fill: #000000;
+  x: ${(props) => props.x};
+  y: ${(props) => props.y};
+`;
+
+const DonutChartTextLabel = styled.tspan`
+  font-size: 1.2rem;
+  font-weight: 550;
+  x: ${(props) => props.x};
+  y: ${(props) => props.y};
+`;
 
 export default function DonutChart(props) {
   const { size, strokewidth, value, valuelabel } = props;
@@ -16,14 +52,14 @@ export default function DonutChart(props) {
   const rotateval = "rotate(-90 " + halfsize + "," + halfsize + ")";
 
   return (
-    <svg width={size} height={size} className="donutchart">
-      <circle r={radius} cx={halfsize} cy={halfsize} transform={rotateval} style={trackstyle} className="donutchart-track" />
-      <circle r={radius} cx={halfsize} cy={halfsize} transform={rotateval} style={indicatorstyle} className="donutchart-indicator" />
-      <text className="donutchart-text" x={halfsize} y={halfsize} style={{ textAnchor: "middle" }}>
-        <tspan className="donutchart-text-label" x={halfsize} y={halfsize + 5}>
+    <DonutChartSvg width={size} height={size} className="donutchart">
+      <DonutChartTrack r={radius} cx={halfsize} cy={halfsize} transform={rotateval} style={trackstyle} />
+      <DonutChartIndicator r={radius} cx={halfsize} cy={halfsize} transform={rotateval} style={indicatorstyle} />
+      <DonutChartText x={halfsize} y={halfsize} style={{ textAnchor: "middle" }}>
+        <DonutChartTextLabel x={halfsize} y={halfsize + 5}>
           {valuelabel}
-        </tspan>
-      </text>
-    </svg>
+        </DonutChartTextLabel>
+      </DonutChartText>
+    </DonutChartSvg>
   );
 }

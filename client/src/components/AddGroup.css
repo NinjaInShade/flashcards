@@ -15,7 +15,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 30px;
+  margin: 30px 0;
   max-height: 60%;
   overflow-y: scroll;
 }
@@ -67,11 +67,6 @@
   margin-bottom: 3%;
   font-weight: 550;
   color: rgb(190, 36, 36) !important;
-}
-
-#addGroupBtn {
-  margin-top: 30px;
-  margin-bottom: 10px;
 }
 
 @media (max-width: 1450px) {

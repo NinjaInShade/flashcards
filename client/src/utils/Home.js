@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 // Components and util
 import AuthHome from "../pages/AuthHome";
 import NoAuthHome from "../pages/NoAuthHome";
-import { AuthContext } from "../util/AuthContext";
+import { AuthContext } from "../utils/AuthContext";
 
 export default function Home() {
   const [auth] = useContext(AuthContext);
