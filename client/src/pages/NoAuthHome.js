@@ -1,13 +1,12 @@
 // Libraries , css and static files
 import React, { useState } from "react";
 import styled from "styled-components";
-
+import authenticate from "../static/noAuthHome.svg";
 // Components and util
 import Modal from "../components/util/Modal";
 import Button from "../components/util/Button";
 import Auth from "../components/Auth";
 import { typography, device } from "../utils/globalCSS";
-import authenticate from "../static/authenticate.svg";
 
 const Image = styled.img`
   max-width: 100%;

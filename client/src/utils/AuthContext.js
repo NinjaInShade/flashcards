@@ -9,7 +9,7 @@ export const AuthContext = createContext();
 export function AuthProvider(props) {
   const { children } = props;
   const [auth, setAuth] = useState({
-    isAuth: false,
+    isAuth: true,
     userId: "53bac2rcba32",
     username: "leon",
     supporter: true,
@@ -51,6 +51,42 @@ export function AuthProvider(props) {
           {
             question: "1+1",
             answer: "2",
+            completed: false,
+          },
+          {
+            question: "1+1",
+            answer: "2",
+            completed: false,
+          },
+          {
+            question: "1+1",
+            answer: "2",
+            completed: false,
+          },
+          {
+            question: "1+1",
+            answer: "2",
+            completed: false,
+          },
+          {
+            question: "1+1",
+            answer: "2",
+            completed: false,
+          },
+          {
+            question: "1+1",
+            answer: "2",
+            completed: false,
+          },
+          {
+            question: "1+1",
+            answer: "2",
+            completed: false,
+          },
+          {
+            question: "Max char 350 For question",
+            answer:
+              "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffa",
             completed: false,
           },
         ],

@@ -2,6 +2,9 @@
 import React from "react";
 import styled from "styled-components";
 
+// Components and util
+import { colours } from "../../utils/globalCSS";
+
 const DonutChartSvg = styled.svg`
   border-radius: 50%;
   display: block;
@@ -9,7 +12,7 @@ const DonutChartSvg = styled.svg`
 
 const DonutChartTrack = styled.circle`
   fill: transparent;
-  stroke: #b88bd4;
+  stroke: rgba(16, 99, 176, 0.5);
   stroke-width: 26;
   r: ${(props) => props.r};
   cx: ${(props) => props.cx};
@@ -19,7 +22,7 @@ const DonutChartTrack = styled.circle`
 
 const DonutChartIndicator = styled(DonutChartTrack)`
   fill: transparent;
-  stroke: #6a1b9a;
+  stroke: ${colours.primary200};
   stroke-width: 26;
   stroke-dasharray: 0 10000;
   transition: stroke-dasharray 0.3s ease;

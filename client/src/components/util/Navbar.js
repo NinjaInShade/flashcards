@@ -21,7 +21,7 @@ const NavbarWrapper = styled.div`
   }
 
   *:hover {
-    background-color: #1063b0;
+    background-color: #084b8a;
   }
 
   @media (max-width: 500px) {
@@ -91,7 +91,7 @@ const SidebarListItem = styled.li`
   }
 
   :hover {
-    background-color: #1063b0;
+    background-color: #084b8a;
   }
 
   @media ${device.mobileL} {
@@ -123,8 +123,8 @@ export default function Navbar({ children }) {
       exact: true,
     },
     {
-      icon: <i className="fas fa-layer-group" style={{ color: "#0d2494", height: "65px", width: "65px" }}></i>,
-      colour: "#0d2494",
+      icon: <i className="fas fa-layer-group" style={{ color: "#94E3F2", height: "65px", width: "65px" }}></i>,
+      colour: "#94E3F2",
       pageName: "Collections",
       pageURL: `/user/${auth.userId}/collections`,
       requireAuth: true,
@@ -144,13 +144,13 @@ export default function Navbar({ children }) {
     <React.Fragment>
       <SidebarOverlay style={sidebar ? {} : { display: "none" }} onClick={() => setSidebar(false)}></SidebarOverlay>
       <SidebarPanel style={sidebar ? {} : { display: "none" }}>
-        <img src={close} alt="close" onClick={() => setSidebar(false)} style={{ cursor: "pointer" }} />
+        <img src={close} alt="close" onClick={() => setSidebar(false)} style={{ cursor: "pointer", fill: "white" }} />
         <SidebarList>
           {navLinks
             .filter((item) => (item.requireAuth ? auth.isAuth : true))
             .map((item) => {
               return (
-                <SidebarListItem onClick={() => setSidebar(false)}>
+                <SidebarListItem onClick={() => setSidebar(false)} key={item.pageURL}>
                   <NavLink to={item.pageURL} key={item.pageURL} exact={item.exact}>
                     {item.pageName}
                   </NavLink>

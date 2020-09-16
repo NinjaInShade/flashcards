@@ -22,7 +22,7 @@ export const device = {
 
 export const colours = {
   primary100: "#275E69",
-  primary200: "#197AD3",
+  primary200: "#1063B0",
   primary300: "#13A0BD",
   primary400: "#09B5D7",
   primary500: "#94E3F2",
@@ -51,6 +51,7 @@ export const colours = {
 export const typography = {
   primaryFont: '"Roboto", sans-serif',
   secondaryFont: '"Roboto Mono", monospace',
+  bigH: "2.4rem",
   h1: "1.8rem",
   h2: "1.6rem",
   h3: "1.4rem",

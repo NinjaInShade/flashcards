@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 // Components and util
 import { AuthContext } from "../utils/AuthContext";
+import { colours } from "../utils/globalCSS";
 
 const CollectionCardWrapper = styled.div`
   display: flex;
@@ -12,10 +13,12 @@ const CollectionCardWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   cursor: pointer;
-  border-radius: ${(props) => props.borderRadius || "8px"};
-  margin: ${(props) => props.margin || "20px"};
-  padding: ${(props) => props.padding || "70px 70px"};
-  background-color: ${(props) => props.bgColour || "#6a1b9a"};
+  border-radius: 15px;
+  padding: 20px;
+  margin: ${(props) => props.margin || "15px"};
+  width: 200px;
+  height: 200px;
+  background-color: ${colours.primary200};
 `;
 
 const CollectionCardOverlay = styled.div`
@@ -35,49 +38,40 @@ const RedirectIcon = styled.i`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  color: white;
+  color: #94e3f2;
 `;
 
 const CollectionName = styled.h1`
-  font-weight: bold;
   margin-bottom: 30px;
-  color: ${(props) => props.txtColour || "#a58ffd"};
-`;
-
-const CollectionIcon = styled.img`
-  width: 120px;
-  height: 120px;
+  color: ${colours.primary600};
 `;
 
 export default function CollectionCard(props) {
-  const { name, icon, id, borderRadius, margin, padding, bgColour, txtColour } = props;
+  const { name, icon, id, margin, asRedirect } = props;
   const [auth] = useContext(AuthContext);
   const [hovered, setHovered] = useState(false);
 
   function redirectHandler() {
-    window.location.href = `/user/${auth.userId}/group/${id}`;
+    window.location.href = `/user/${auth.userId}/collections/${id}`;
   }
 
   return (
-    <React.Fragment>
-      <CollectionCardWrapper
-        onMouseEnter={() => {
-          setHovered(true);
-        }}
-        onMouseLeave={() => {
-          setHovered(false);
-        }}
-        borderRadius={borderRadius}
-        margin={margin}
-        padding={padding}
-        bgColour={bgColour}
-      >
+    <CollectionCardWrapper
+      onMouseEnter={() => {
+        setHovered(true);
+      }}
+      onMouseLeave={() => {
+        setHovered(false);
+      }}
+      margin={margin}
+    >
+      {asRedirect && (
         <CollectionCardOverlay style={hovered ? {} : { display: "none" }} onClick={redirectHandler}>
           <RedirectIcon className="fas fa-directions fa-5x"></RedirectIcon>
         </CollectionCardOverlay>
-        <CollectionName txtColour={txtColour}>{name}</CollectionName>
-        <CollectionIcon src={icon} alt="icon" />
-      </CollectionCardWrapper>
-    </React.Fragment>
+      )}
+      <CollectionName>{name}</CollectionName>
+      <i className={`${icon} fa-5x`}></i>
+    </CollectionCardWrapper>
   );
 }

@@ -20,7 +20,7 @@ const GroupsContentColumn = styled.div`
 
 const GroupList = styled.div`
   margin: 40px 0;
-  width: 75%;
+  width: 85%;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -38,7 +38,7 @@ export default function Collections() {
       <AddCollection />
       <GroupList>
         {auth.collections.map((collection) => {
-          return <CollectionCard name={collection.name} icon={collection.icon} key={collection.id} id={collection.id} />;
+          return <CollectionCard name={collection.name} icon={collection.icon} key={collection.id} id={collection.id} asRedirect />;
         })}
       </GroupList>
     </GroupsContentColumn>

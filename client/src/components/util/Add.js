@@ -1,8 +1,9 @@
 // Libraries , css and static files
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import addIcon from "../../static/plus.svg";
-import addIconActive from "../../static/plusActive.svg";
+
+// Components and util
+import { colours } from "../../utils/globalCSS";
 
 const AddContainer = styled.div`
   position: relative;
@@ -11,27 +12,40 @@ const AddContainer = styled.div`
   align-items: center;
   width: auto;
   height: auto;
-  border-radius: 8px;
-  background-color: #6a1b9a;
+  border-radius: 15px;
+  background-color: ${colours.primary200};
   cursor: pointer;
   padding: ${(props) => props.padding || "100px"};
+  margin: ${(props) => props.margin || 0};
+
+  :hover {
+    background-color: #0d589e;
+  }
+
+  :hover * {
+    color: ${colours.primary500};
+  }
 `;
 
-const AddIcon = styled.img`
+const AddIcon = styled.div`
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 40%;
   height: 40%;
 `;
 
-export default function Add(props) {
-  const { onClick, padding } = props;
+const Icon = styled.i`
+  color: ${colours.primary600};
+`;
 
-  const [active, setActive] = useState(false);
-  const icon = active ? addIconActive : addIcon;
-
+export default function Add({ onClick, padding, margin }) {
   return (
-    <AddContainer style={active ? { backgroundColor: "#792ea8" } : {}} onMouseEnter={() => setActive(true)} onMouseLeave={() => setActive(false)} padding={padding}>
-      <AddIcon src={icon} alt="add icon" onClick={onClick} />
+    <AddContainer padding={padding} onClick={onClick} margin={margin}>
+      <AddIcon>
+        <Icon className="fas fa-plus-circle fa-5x"></Icon>
+      </AddIcon>
     </AddContainer>
   );
 }

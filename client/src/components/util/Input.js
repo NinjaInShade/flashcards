@@ -29,6 +29,16 @@ const InputField = styled.input`
   padding: 15px 10px;
 `;
 
+const TextAreaField = styled.textarea`
+  outline: none;
+  border: none;
+  font-family: ${typography.secondaryFont};
+  font-size: ${typography.p};
+  background-color: ${colours.neutral300};
+  width: 100%;
+  padding: 15px 10px;
+`;
+
 const ErrorText = styled.p`
   font-family: ${typography.secondaryFont};
   font-size: ${typography.p};
@@ -37,12 +47,16 @@ const ErrorText = styled.p`
 `;
 
 export default function Input(props) {
-  const { label, maxLength, password, width, margin, value, onChange, error } = props;
+  const { label, maxLength, type = "text", rows, width, margin, value, onChange, error, placeholder } = props;
 
   return (
     <Container width={width} margin={margin}>
       <Label style={{ color: error.filter((error) => error !== undefined && error !== "").length > 0 ? colours.error100 : colours.neutral500 }}>{label}</Label>
-      <InputField type={password ? "password" : "text"} maxLength={maxLength} onChange={onChange} value={value} />
+      {type === "textarea" ? (
+        <TextAreaField maxLength={maxLength} onChange={onChange} value={value} placeholder={placeholder} rows={rows} />
+      ) : (
+        <InputField type={type} maxLength={maxLength} onChange={onChange} value={value} placeholder={placeholder} />
+      )}
       <ErrorText>{error.map((error) => error)}</ErrorText>
     </Container>
   );

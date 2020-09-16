@@ -1,8 +1,8 @@
 // Libraries , css and static files
 import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
-import signin from "../static/signin.svg";
-import signup from "../static/signup.svg";
+import signin from "../static/noAuthHome2.svg";
+import signup from "../static/noAuthHome3.svg";
 
 // Components and util
 import { typography, device } from "../utils/globalCSS";
@@ -149,7 +149,7 @@ export default function Auth(props) {
           <Inputs>
             {pageContent === "signup" && <Input label="Username" maxLength="15" margin="15px 0" onChange={(e) => setUsername(e.target.value)} value={username} error={[error.usernameError, error.createUserError]} width="96%" />}
             <Input label="Email" margin="15px 0" onChange={(e) => setEmail(e.target.value)} value={email} error={[error.emailError, error.wrongUserError, error.serverError]} width="96%" />
-            <Input label="Password" password margin="15px 0 45px 0" onChange={(e) => setPassword(e.target.value)} value={password} error={[error.passwordError]} width="96%" />
+            <Input label="Password" password margin="15px 0 45px 0" onChange={(e) => setPassword(e.target.value)} value={password} error={[error.passwordError]} width="96%" type="password" />
             <ButtonsContainer>
               <Button type="tertiary" onClick={pageContent === "signup" ? () => setPageContent("signin") : () => setPageContent("signup")}>
                 {pageContent === "signup" ? "Login" : "Sign up"}
