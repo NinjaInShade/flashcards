@@ -34,7 +34,55 @@ export function AuthProvider(props) {
       {
         name: "Chemistry",
         icon: icons.chemistry,
-        id: "2",
+        id: "5",
+        flashcards: [
+          {
+            question: "1+1",
+            answer: "2",
+            completed: false,
+          },
+        ],
+      },
+      {
+        name: "Biology",
+        icon: icons.chemistry,
+        id: "6",
+        flashcards: [
+          {
+            question: "1+1",
+            answer: "2",
+            completed: false,
+          },
+        ],
+      },
+      {
+        name: "Science",
+        icon: icons.chemistry,
+        id: "21",
+        flashcards: [
+          {
+            question: "1+1",
+            answer: "2",
+            completed: false,
+          },
+        ],
+      },
+      {
+        name: "Gym",
+        icon: icons.chemistry,
+        id: "22",
+        flashcards: [
+          {
+            question: "1+1",
+            answer: "2",
+            completed: false,
+          },
+        ],
+      },
+      {
+        name: "Chemistry",
+        icon: icons.chemistry,
+        id: "23",
         flashcards: [
           {
             question: "1+1",
@@ -46,7 +94,7 @@ export function AuthProvider(props) {
       {
         name: "Phsyics",
         icon: icons.physics,
-        id: "3",
+        id: "34",
         flashcards: [
           {
             question: "1+1",

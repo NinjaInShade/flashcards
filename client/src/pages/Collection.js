@@ -5,7 +5,7 @@ import { Redirect, useParams } from "react-router-dom";
 
 // Components and util
 import { AuthContext } from "../utils/AuthContext";
-import CollectionCard from "../components/CollectionCard";
+import CollectionCard from "../components/collection-card/CollectionCard";
 import Flashcard from "../components/Flashcard";
 import Modal from "../components/util/Modal";
 import Input from "../components/util/Input";

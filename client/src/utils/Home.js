@@ -2,7 +2,7 @@
 import React, { useContext } from "react";
 
 // Components and util
-import AuthHome from "../pages/AuthHome";
+import AuthHome from "../pages/auth-home/AuthHome";
 import NoAuthHome from "../pages/NoAuthHome";
 import { AuthContext } from "../utils/AuthContext";
 

@@ -1,0 +1,110 @@
+.AuthHome-svg {
+  position: relative;
+  height: auto;
+  max-width: 100%;
+  min-width: 1600px;
+}
+
+.AuthHome-nextarrow:hover {
+  cursor: pointer;
+  fill: #f9aa97;
+}
+
+.AuthHome-container {
+  height: calc(100vh - 100px);
+  width: 100vw;
+}
+
+.AuthHome-grey {
+  background-color: #f6f6fa;
+  min-height: 50%;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.AuthHome-red {
+  background-color: #f67354;
+  padding: 40px;
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.AuthHome-HeroTextContainer {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.AuthHome-HeroTextHeading {
+  font-size: 72px;
+  font-weight: bold;
+}
+
+.AuthHome-HeroTextLead {
+  font-size: 24px;
+}
+
+.AuthHome-red > svg {
+  margin: 0 50px;
+  cursor: pointer;
+}
+
+.AuthHome-fill:hover {
+  fill: #f9aa97;
+}
+
+.AuthHome-hero {
+  height: 50%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.AuthHome-button {
+  margin-top: 25px;
+  background: #412bb5;
+}
+
+.AuthHome-CollectionsRow {
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  position: relative;
+  padding: 50px;
+  overflow: hidden;
+}
+
+.AuthHome-FadeOverlay {
+  height: 100%;
+  width: 200px;
+  position: absolute;
+  z-index: 50;
+}
+
+.AuthHome-FadeOverlayLeft {
+  left: 0;
+  background: linear-gradient(270deg, rgba(246, 246, 250, 0) 0%, rgba(246, 246, 250, 1) 100%);
+}
+
+.AuthHome-FadeOverlayRight {
+  right: 0;
+  background: linear-gradient(90deg, rgba(246, 246, 250, 0) 0%, rgba(246, 246, 250, 1) 100%);
+}
+
+@media (max-width: 450px) {
+  .AuthHome-red > svg {
+    margin: 0 25px;
+  }
+
+  .AuthHome-HeroTextHeading {
+    font-size: 52px;
+  }
+
+  .AuthHome-HeroTextLead {
+    font-size: 16px;
+  }
+}

@@ -17,7 +17,7 @@ const ButtonUtil = styled.button`
   min-width: 150px;
   padding: ${(props) => (props.small ? "10px 25px" : props.large ? "25px 70px" : "15px 30px")};
   transition: background-color 0.3s ease, color 0.3s ease;
-  background-color: ${colours.primary400};
+  background-color: #412bb5;
 
   :hover {
     background-color: ${colours.primary300};
@@ -52,7 +52,7 @@ const Secondary = styled(ButtonUtil)`
 const Tertiary = styled(ButtonUtil)`
   color: ${colours.primary300};
   background: none;
-  border: 2px solid ${colours.primary300};
+  border: 2px solid #412bb5;
 
   :hover {
     color: ${colours.neutral100};

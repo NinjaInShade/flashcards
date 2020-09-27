@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 
 // Components and util
 import AddCollection from "../components/AddCollection";
-import CollectionCard from "../components/CollectionCard";
+import CollectionCard from "../components/collection-card/CollectionCard";
 import { device } from "../utils/globalCSS";
 import { AuthContext } from "../utils/AuthContext";
 

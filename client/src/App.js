@@ -5,8 +5,7 @@ import "./App.css";
 
 // Components and util
 import Home from "./utils/Home";
-import Navbar from "./components/util/Navbar";
-import Supporter from "./pages/Supporter";
+import Navbar from "./components/util/navbar/Navbar";
 import Collections from "./pages/Collections";
 import Collection from "./pages/Collection";
 import { AuthProvider } from "./utils/AuthContext";
@@ -28,7 +27,6 @@ export default function App() {
   const routes = (
     <Switch>
       <Route path="/" component={Home} exact />
-      <Route path="/supporter" component={Supporter} exact />
       <Route path="/user/:userId/collections" component={Collections} exact />
       <Route path="/user/:userId/collections/:collectionId" component={Collection} exact />
       <Route path="*">
