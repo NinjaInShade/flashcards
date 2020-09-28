@@ -6,8 +6,7 @@ import "./App.css";
 // Components and util
 import Home from "./utils/Home";
 import Navbar from "./components/util/navbar/Navbar";
-import Collections from "./pages/Collections";
-import Collection from "./pages/Collection";
+import Collection from "./pages/collection/Collection";
 import { AuthProvider } from "./utils/AuthContext";
 
 // TODO: CREDIT ICONS
@@ -27,7 +26,8 @@ export default function App() {
   const routes = (
     <Switch>
       <Route path="/" component={Home} exact />
-      <Route path="/user/:userId/collections" component={Collections} exact />
+      <Route path="/test" exact />
+      <Route path="/test/" />
       <Route path="/user/:userId/collections/:collectionId" component={Collection} exact />
       <Route path="*">
         <Redirect to="/" />

@@ -1,0 +1,58 @@
+.Flashcard-card {
+  border-radius: 8px;
+  min-width: 300px;
+  height: 250px;
+  background-color: #fff;
+  margin: 15px;
+  padding: 10px;
+  transform: perspective(1000px) rotateY(0);
+  transform-style: preserve-3d;
+  transition: 300ms;
+}
+
+.Flashcard-ModalTextContainer {
+  margin-top: 20px;
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+.Flashcard-ModalText {
+  letter-spacing: 1px;
+}
+
+.Flashcard-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  backface-visibility: hidden;
+}
+
+.Flashcard-title {
+  color: #51535c;
+  font-style: italic;
+}
+
+.Flashcard-flip {
+  color: #51535c;
+  font-style: italic;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.Flashcard-InsideContent {
+  height: 190px;
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+.Flashcard-InsideTextContent {
+  padding-top: 10px;
+  color: #000;
+  font-size: 1.2rem;
+}
+
+.Flashcard-ellipsis {
+  cursor: pointer;
+  color: #51535c;
+}

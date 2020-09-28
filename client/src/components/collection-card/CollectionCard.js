@@ -1,8 +1,6 @@
 // Libraries , css and static files
 import React, { useContext } from "react";
-import { CollectionCardWrapper, CollectionName, CollectionLead } from "./CollectionCardStyle";
-
-// Components and util
+import "./CollectionCard.css";
 import { AuthContext } from "../../utils/AuthContext";
 
 export default function CollectionCard(props) {
@@ -14,10 +12,10 @@ export default function CollectionCard(props) {
   }
 
   return (
-    <CollectionCardWrapper margin={margin} onClick={redirectHandler} id={idTag} className={className}>
+    <div margin={margin} onClick={redirectHandler} id={idTag} className={`${className} CollectionCard-card`}>
       <i className={`${icon} fa-4x`} style={{ color: "#C73357" }}></i>
-      <CollectionName>{name}</CollectionName>
-      <CollectionLead>{`${flashcardAmount} flashcards`}</CollectionLead>
-    </CollectionCardWrapper>
+      <p className="CollectionCard-text">{name}</p>
+      <p className="CollectionCard-lead">{`${flashcardAmount} flashcards`}</p>
+    </div>
   );
 }

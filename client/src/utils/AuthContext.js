@@ -15,7 +15,7 @@ export function AuthProvider(props) {
     supporter: true,
     collections: [
       {
-        name: "Maths",
+        name: "Maths1",
         icon: icons.maths,
         id: "1",
         flashcards: [
@@ -32,7 +32,24 @@ export function AuthProvider(props) {
         ],
       },
       {
-        name: "Chemistry",
+        name: "Testerrrr2",
+        icon: icons.maths,
+        id: "12",
+        flashcards: [
+          {
+            question: "1+1",
+            answer: "2",
+            completed: false,
+          },
+          {
+            question: "1+4",
+            answer: "5",
+            completed: false,
+          },
+        ],
+      },
+      {
+        name: "Chemistry3",
         icon: icons.chemistry,
         id: "5",
         flashcards: [
@@ -44,7 +61,7 @@ export function AuthProvider(props) {
         ],
       },
       {
-        name: "Biology",
+        name: "Biology4",
         icon: icons.chemistry,
         id: "6",
         flashcards: [
@@ -56,7 +73,7 @@ export function AuthProvider(props) {
         ],
       },
       {
-        name: "Science",
+        name: "Science5",
         icon: icons.chemistry,
         id: "21",
         flashcards: [
@@ -68,7 +85,7 @@ export function AuthProvider(props) {
         ],
       },
       {
-        name: "Gym",
+        name: "Gym6",
         icon: icons.chemistry,
         id: "22",
         flashcards: [
@@ -80,7 +97,7 @@ export function AuthProvider(props) {
         ],
       },
       {
-        name: "Chemistry",
+        name: "Chemistry7",
         icon: icons.chemistry,
         id: "23",
         flashcards: [
@@ -92,7 +109,7 @@ export function AuthProvider(props) {
         ],
       },
       {
-        name: "Phsyics",
+        name: "Phsyics8",
         icon: icons.physics,
         id: "34",
         flashcards: [
@@ -102,37 +119,37 @@ export function AuthProvider(props) {
             completed: false,
           },
           {
-            question: "1+1",
+            question: "1+2",
             answer: "2",
             completed: false,
           },
           {
-            question: "1+1",
+            question: "1+3",
             answer: "2",
             completed: false,
           },
           {
-            question: "1+1",
+            question: "1+4",
             answer: "2",
             completed: false,
           },
           {
-            question: "1+1",
+            question: "1+5",
             answer: "2",
             completed: false,
           },
           {
-            question: "1+1",
+            question: "1+6",
             answer: "2",
             completed: false,
           },
           {
-            question: "1+1",
+            question: "ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss",
             answer: "2",
             completed: false,
           },
           {
-            question: "Max char 350 For question",
+            question: "Max char 200 For question",
             answer:
               "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffa",
             completed: false,

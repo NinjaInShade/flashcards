@@ -1,0 +1,59 @@
+.AddCollection-InputGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.AddCollection-LabelWrapper {
+  width: 300px;
+  margin: 15px 0;
+}
+
+.AddCollection-label {
+  font-family: "Roboto Mono", monospace;
+}
+
+.AddCollection-error {
+  font-family: "Roboto Mono", monospace;
+  color: #d0454c;
+  margin-top: 2px;
+}
+
+.AddCollection-grid {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  max-height: 500px;
+  overflow-y: scroll;
+  background-color: #f7f7f7;
+}
+
+.AddCollection-preview {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  border-radius: 8px;
+  padding: 40px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.AddCollection-preview:hover {
+  background-color: #e2e2e2;
+}
+
+@media (max-width: 660px) {
+  .AddCollection-grid {
+    width: 300px;
+  }
+}
+
+@media (max-width: 330px) {
+  .AddCollection-LabelWrapper,
+  .AddCollection-grid {
+    width: 220px;
+  }
+}

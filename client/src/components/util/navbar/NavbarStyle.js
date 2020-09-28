@@ -9,7 +9,7 @@ export const NavbarWrapper = styled.div`
   align-items: center;
   z-index: 800;
 
-  @media (max-width: 500px) {
+  @media (max-width: 650px) {
     > :not(:last-child):not(:first-child) {
       display: none;
     }
@@ -27,7 +27,7 @@ export const Hamburger = styled.div`
   cursor: pointer;
   display: none;
 
-  @media (max-width: 500px) {
+  @media (max-width: 650px) {
     display: initial;
   }
 `;
@@ -40,8 +40,8 @@ export const PageLinks = styled.div`
     margin: 0 15px;
   }
 
-  button {
-    margin: 0 15px;
+  > button {
+    margin: 0 5px;
   }
 `;
 
