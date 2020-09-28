@@ -15,7 +15,7 @@ export default function Flashcard(props) {
   }
 
   return (
-    <React.Fragment>
+    <div className="FLashcard-container">
       <Modal show={show} setShow={setShow} asOverlay>
         <h1>Full answer:</h1>
         <div className="Flashcard-ModalTextContainer">
@@ -48,6 +48,6 @@ export default function Flashcard(props) {
           </p>
         </div>
       </div>
-    </React.Fragment>
+    </div>
   );
 }

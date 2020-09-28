@@ -28,7 +28,7 @@ export default function AuthHome() {
       </div>
       <div className="AuthHome-grey">
         <div className="AuthHome-CollectionsContainer">
-          <GliderComponent hasArrows={true} hasDots={true} settings={{ slidesToShow: 5, slidesToScroll: 1, draggable: true }}>
+          <GliderComponent hasArrows={true} hasDots={true} settings={{ slidesToShow: 5, slidesToScroll: 1, draggable: true, dragVelocity: 1 }}>
             {auth.collections.map((collection) => {
               return <CollectionCard id={collection.id} key={collection.id} name={collection.name} icon={collection.icon} flashcardAmount={collection.flashcards.length} />;
             })}

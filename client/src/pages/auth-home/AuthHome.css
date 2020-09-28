@@ -90,7 +90,7 @@
 }
 
 @media (max-width: 420px) {
-  .AuthHome-CreateButton {
+  .AuthHome-button {
     margin: 5px 0 10px 0;
   }
 }

@@ -12,6 +12,7 @@ export default function Collections() {
   const [show, setShow] = useState(false);
   const { collectionId } = useParams();
   const currentCollection = auth.collections.filter((collection) => collection.id === collectionId)[0];
+  console.log(currentCollection);
 
   const content = (
     <React.Fragment>
@@ -34,7 +35,7 @@ export default function Collections() {
         </div>
         <div className="AuthHome-grey">
           <div className="AuthHome-CollectionsContainer">
-            <GliderComponent hasArrows={true} hasDots={true} settings={{ slidesToShow: 5, slidesToScroll: 1, draggable: true }}>
+            <GliderComponent hasArrows={true} hasDots={true} settings={{ slidesToShow: "auto", itemWidth: 300, slidesToScroll: 1, draggable: true, dragVelocity: 1 }}>
               {currentCollection.flashcards.map((flashcard) => {
                 return <Flashcard frontContent={flashcard.question} backContent={flashcard.answer} key={Math.random()} />;
               })}
