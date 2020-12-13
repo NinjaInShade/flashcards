@@ -1,5 +1,5 @@
 // Libraries , css and static files
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import GliderComponent from "react-glider-carousel";
 import { Redirect, useParams, Link } from "react-router-dom";
 import "./Collection.css";
@@ -10,20 +10,37 @@ import AddFlashcard from "../../components/add-flashcard/AddFlashcard";
 export default function Collections() {
   const [auth] = useContext(AuthContext);
   const [show, setShow] = useState(false);
+  const [currentCollection, setCurrentCollection] = useState();
   const { collectionId } = useParams();
-  const currentCollection = auth.collections.filter((collection) => collection.id === collectionId)[0];
-  console.log(currentCollection);
 
-  const content = (
+  useEffect(() => {
+    setCurrentCollection(auth.collections.filter((collection) => collection.id === collectionId)[0]);
+  }, [auth.collections, collectionId]);
+
+  function editCollection() {
+    console.log("Edit collection");
+  }
+
+  function deleteCollection() {
+    console.log("Delete collection");
+  }
+
+  const content = currentCollection ? (
     <React.Fragment>
       <AddFlashcard show={show} setShow={setShow} />
       <div className="AuthHome-container">
         <div className="AuthHome-hero">
           <div className="AuthHome-HeroTextContainer">
-            <h1 className="AuthHome-HeroTextHeading">
+            <div className="Collection-header">
               <i className={`${currentCollection.icon} Collection-icon`}></i>
-              {currentCollection.name}
-            </h1>
+              <h1 className="AuthHome-HeroTextHeading">{currentCollection.name}</h1>
+              <button className="Flashcard-icons" onClick={() => editCollection()}>
+                <i className="fas fa-edit"></i>
+              </button>
+              <button className="Flashcard-icons" onClick={() => deleteCollection()}>
+                <i className="fas fa-trash"></i>
+              </button>
+            </div>
             <p className="AuthHome-HeroTextLead">View all the flashcards below</p>
             <Link to={`/user/${auth.userId}/test/${currentCollection.id}`}>
               <button className="AuthHome-button PrimaryButton">Start test</button>
@@ -50,6 +67,8 @@ export default function Collections() {
         </div>
       </div>
     </React.Fragment>
+  ) : (
+    <h1>LOADING</h1>
   );
 
   return auth.isAuth ? content : <Redirect to="/" />;

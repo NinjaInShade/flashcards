@@ -23,7 +23,7 @@ export default function Flashcard(props) {
   }
 
   return (
-    <div className="FLashcard-container">
+    <div className="Flashcard-container">
       <Modal show={show} setShow={setShow} asOverlay>
         <h1>Full answer:</h1>
         <div className="Flashcard-ModalTextContainer">

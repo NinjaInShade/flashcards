@@ -1,4 +1,19 @@
 .Collection-icon {
   color: #c73357;
   margin-right: 10px;
+  font-size: 3rem;
+}
+
+.Collection-header {
+  display: flex;
+  align-items: center;
+}
+
+.Collection-header h1 {
+  margin-right: 10px;
+}
+
+.Collection-header button svg {
+  font-size: 3rem;
+  margin: 0 5px;
 }
