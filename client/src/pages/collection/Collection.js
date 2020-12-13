@@ -35,7 +35,11 @@ export default function Collections() {
         </div>
         <div className="AuthHome-grey">
           <div className="AuthHome-CollectionsContainer">
-            <GliderComponent hasArrows={true} hasDots={true} settings={{ slidesToShow: "auto", itemWidth: 300, slidesToScroll: 1, draggable: true, dragVelocity: 1 }}>
+            <GliderComponent
+              hasArrows={true}
+              hasDots={true}
+              settings={{ slidesToShow: "auto", itemWidth: 300, slidesToScroll: 1, draggable: true, dragVelocity: 1 }}
+            >
               {currentCollection.flashcards.map((flashcard) => {
                 return <Flashcard frontContent={flashcard.question} backContent={flashcard.answer} key={Math.random()} />;
               })}

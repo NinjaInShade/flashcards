@@ -14,6 +14,14 @@ export default function Flashcard(props) {
     ellipsis = "...";
   }
 
+  function editFlashcard() {
+    console.log("edited");
+  }
+
+  function deleteFlashcard() {
+    console.log("deleted");
+  }
+
   return (
     <div className="FLashcard-container">
       <Modal show={show} setShow={setShow} asOverlay>
@@ -28,9 +36,15 @@ export default function Flashcard(props) {
           <div className="Flashcard-InsideContent">
             <p className="Flashcard-InsideTextContent">{frontContent}</p>
           </div>
-          <p className="Flashcard-flip" onClick={() => setFlip(!flip)}>
-            Flip &gt;&gt;
-          </p>
+          <div className="Flashcard-flip">
+            <button className="Flashcard-icons" onClick={() => editFlashcard()}>
+              <i className="fas fa-edit"></i>
+            </button>
+            <button className="Flashcard-icons" onClick={() => deleteFlashcard()}>
+              <i className="fas fa-trash"></i>
+            </button>
+            <p onClick={() => setFlip(!flip)}>Flip &gt;&gt;</p>
+          </div>
         </div>
 
         <div className="Flashcard-content" style={{ transform: "rotateY(180deg)", display: flip ? "flex" : "none" }}>
@@ -43,9 +57,15 @@ export default function Flashcard(props) {
               </span>
             </p>
           </div>
-          <p className="Flashcard-flip" onClick={() => setFlip(!flip)}>
-            Flip &gt;&gt;
-          </p>
+          <div className="Flashcard-flip">
+            <button className="Flashcard-icons" onClick={() => editFlashcard()}>
+              <i className="fas fa-edit"></i>
+            </button>
+            <button className="Flashcard-icons" onClick={() => deleteFlashcard()}>
+              <i className="fas fa-trash"></i>
+            </button>
+            <p onClick={() => setFlip(!flip)}>Flip &gt;&gt;</p>
+          </div>
         </div>
       </div>
     </div>

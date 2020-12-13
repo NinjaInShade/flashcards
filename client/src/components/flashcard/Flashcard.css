@@ -41,6 +41,18 @@
   font-style: italic;
   align-self: flex-end;
   cursor: pointer;
+  display: flex;
+}
+
+.Flashcard-icons {
+  padding: 0;
+  display: block;
+  color: #51535c;
+  min-width: auto;
+}
+
+.Flashcard-icons > * {
+  margin-right: 10px;
 }
 
 .Flashcard-InsideContent {

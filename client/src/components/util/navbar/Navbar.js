@@ -85,11 +85,6 @@ export default function Navbar({ children }) {
               Sign out
             </button>
           )}
-          {!auth.isAuth && (
-            <button onClick={() => setAuth({ ...auth, isAuth: true })} className="PrimaryButton">
-              Login
-            </button>
-          )}
         </PageLinks>
 
         <Hamburger onClick={() => setSidebar(true)}>
