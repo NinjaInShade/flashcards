@@ -1,13 +1,14 @@
-// Libraries , css and static files
+// Libraries and static files
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-import "./App.css";
 
 // Components and util
 import Home from "./utils/Home";
 import Navbar from "./components/util/navbar/Navbar";
 import Collection from "./pages/collection/Collection";
 import { AuthProvider } from "./utils/AuthContext";
+
+import "./App.css";
 
 export default function App() {
   const routes = (

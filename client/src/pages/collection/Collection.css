@@ -14,6 +14,7 @@
 }
 
 .Collection-header button svg {
-  font-size: 3rem;
+  font-size: 2rem;
   margin: 0 5px;
+  color: #442eba;
 }
