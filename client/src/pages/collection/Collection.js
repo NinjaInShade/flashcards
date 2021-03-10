@@ -1,6 +1,5 @@
 // Libraries , css and static files
 import React, { useContext, useState, useEffect } from "react";
-import GliderComponent from "react-glider-carousel";
 import { Redirect, useParams, Link } from "react-router-dom";
 import "./Collection.css";
 import { AuthContext } from "../../utils/AuthContext";
@@ -52,7 +51,7 @@ export default function Collections() {
         </div>
         <div className="AuthHome-grey">
           <div className="AuthHome-CollectionsContainer">
-            <GliderComponent
+            {/* <GliderComponent
               hasArrows={true}
               hasDots={true}
               settings={{ slidesToShow: "auto", itemWidth: 300, slidesToScroll: 1, draggable: true, dragVelocity: 1 }}
@@ -60,7 +59,7 @@ export default function Collections() {
               {currentCollection.flashcards.map((flashcard) => {
                 return <Flashcard frontContent={flashcard.question} backContent={flashcard.answer} key={Math.random()} />;
               })}
-            </GliderComponent>
+            </GliderComponent> */}
           </div>
 
           <div className="AuthHome-red"></div>

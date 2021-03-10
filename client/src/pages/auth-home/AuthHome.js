@@ -2,7 +2,7 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../utils/AuthContext";
-import GliderComponent from "react-glider-carousel";
+import Carousel from "react-elastic-carousel";
 import CollectionCard from "../../components/collection-card/CollectionCard";
 import AddCollection from "../../components/add-collection/AddCollection";
 import Button from "../../components/util/button/Button";
@@ -12,6 +12,14 @@ import "./AuthHome.css";
 export default function AuthHome() {
   const [auth] = useContext(AuthContext);
   const [show, setShow] = useState(false);
+
+  const breakPoints = [
+    { width: 1, itemsToShow: 1 },
+    { width: 500, itemsToShow: 2 },
+    { width: 1000, itemsToShow: 3 },
+    { width: 1500, itemsToShow: 4 },
+    { width: 2000, itemsToShow: 5 },
+  ];
 
   return (
     <div className="AuthHome-container">
@@ -30,7 +38,7 @@ export default function AuthHome() {
       </div>
       <div className="AuthHome-grey">
         <div className="AuthHome-CollectionsContainer">
-          <GliderComponent hasArrows={true} hasDots={true} settings={{ slidesToShow: 5, slidesToScroll: 1, draggable: true, dragVelocity: 1 }}>
+          <Carousel breakPoints={breakPoints}>
             {auth.collections.map((collection) => {
               return (
                 <CollectionCard
@@ -42,7 +50,7 @@ export default function AuthHome() {
                 />
               );
             })}
-          </GliderComponent>
+          </Carousel>
         </div>
         <div className="AuthHome-red"></div>
       </div>

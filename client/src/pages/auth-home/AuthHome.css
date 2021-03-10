@@ -39,12 +39,38 @@
 
 .AuthHome-CollectionsContainer {
   margin: auto;
-  width: 90%;
+  padding: 2rem 20px;
+  width: 100%;
 }
 
 .AuthHome-red {
   background-color: var(--red-300);
   height: 200px;
+}
+
+.rec-dot:hover,
+.rec-dot:focus {
+  box-shadow: 0 0 1px 3px var(--red-700) !important;
+}
+
+.rec-dot_active {
+  background-color: var(--red-700) !important;
+  box-shadow: 0 0 1px 3px var(--red-700) !important;
+}
+
+.rec-arrow {
+  color: var(--neutral-100) !important;
+  background: var(--red-700) !important;
+}
+
+.rec-arrow:hover {
+  background: var(--red-800) !important;
+}
+
+@media (max-height: 1000px) {
+  .AuthHome-red {
+    height: 100px;
+  }
 }
 
 @media (max-width: 450px) {
