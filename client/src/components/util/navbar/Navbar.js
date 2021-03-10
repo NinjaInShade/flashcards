@@ -1,23 +1,17 @@
 // Libraries , css and static files
-import React, { useState, useContext, useEffect } from "react";
-import { SidebarOverlay, SidebarPanel, SidebarList, SidebarListItem, NavbarWrapper, PageLinks, Hamburger } from "./NavbarStyle";
-import { NavLink, useHistory } from "react-router-dom";
-import close from "../../../static/close.svg";
+import React, { useState, useContext } from "react";
+import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../../utils/AuthContext";
+import Button from "../../util/button/Button";
+import Logo from "../../../static/Logo.png";
+import close from "../../../static/close.svg";
+
+import "./Navbar.css";
+import "./Sidebar.css";
 
 export default function Navbar({ children }) {
   const [auth, setAuth] = useContext(AuthContext);
-  const [path, setPath] = useState(window.location.pathname);
   const [sidebar, setSidebar] = useState(false);
-  const history = useHistory();
-
-  useEffect(() => {
-    history.listen((location) => {
-      if (location.pathname !== path) {
-        setPath(location.pathname);
-      }
-    });
-  }, [history, path, auth.userId]);
 
   const navLinks = [
     {
@@ -35,63 +29,74 @@ export default function Navbar({ children }) {
   ];
 
   return (
-    <React.Fragment>
-      <SidebarOverlay style={sidebar ? {} : { display: "none" }} onClick={() => setSidebar(false)}></SidebarOverlay>
-      <SidebarPanel style={sidebar ? {} : { transform: "translateX(100%)" }}>
-        <img src={close} alt="close" onClick={() => setSidebar(false)} style={{ cursor: "pointer", fill: "white" }} />
-        <SidebarList>
+    <>
+      <div className={`sidebar-overlay ${!sidebar && "sidebar-overlay-hidden"}`} onClick={() => setSidebar(false)}></div>
+      <div className="sidebar-panel" style={sidebar ? {} : { transform: "translateX(100%)" }}>
+        <button onClick={() => setSidebar(false)} className="sidebar-close-btn">
+          <img src={close} alt="close sidebar" className="sidebar-close" />
+        </button>
+        <ul>
           {navLinks
             .filter((item) => (item.requireAuth ? auth.isAuth : true))
-            .map((item) => {
+            .map((item, index) => {
               return (
-                <SidebarListItem onClick={() => setSidebar(false)} key={item.pageURL}>
-                  <NavLink to={item.pageURL} key={item.pageURL} exact={item.exact}>
+                <li onClick={() => setSidebar(false)} key={index} className="sidebar-list-item">
+                  <NavLink to={item.pageURL} key={item.pageURL} exact={item.exact} activeClassName="nav-link-active" className="nav-link">
                     {item.pageName}
                   </NavLink>
-                </SidebarListItem>
+                </li>
               );
             })}
-        </SidebarList>
-      </SidebarPanel>
-      <NavbarWrapper>
+          {auth.isAuth && (
+            <li>
+              <Button className="sidebar-btn" onClick={() => setAuth({ ...auth, isAuth: false })}>
+                Sign out
+              </Button>
+            </li>
+          )}
+        </ul>
+      </div>
+
+      <div className="navbar-wrapper">
         <NavLink to="/">
-          <svg width="80" height="67" viewBox="0 0 80 67" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginLeft: "50px" }}>
-            <g clipPath="url(#clip0)">
-              <path d="M74.1242 0H6.32764V67H74.1242V0Z" fill="#442EBA" />
-              <path d="M36.1441 44.953H50.7625V48.24H32.0551V17.755H36.1441V44.953Z" fill="white" />
-              <path d="M79.6765 31.7768L73.2845 25.46L66.8926 31.7768L73.2845 38.0936L79.6765 31.7768Z" fill="#442EBA" />
-              <path d="M12.7838 31.7768L6.39185 25.46L-8.12426e-05 31.7768L6.39185 38.0936L12.7838 31.7768Z" fill="#442EBA" />
-            </g>
-            <defs>
-              <clipPath id="clip0">
-                <rect width="80" height="67" fill="white" />
-              </clipPath>
-            </defs>
-          </svg>
+          <img src={Logo} alt="Brand logo" className="brand-logo" />
         </NavLink>
 
-        <PageLinks style={{ marginRight: "50px" }}>
+        <div className="nav-links">
           {navLinks
             .filter((item) => (item.requireAuth ? auth.isAuth : true))
-            .map((item) => {
+            .map((item, index) => {
               return (
-                <NavLink to={item.pageURL} key={item.pageURL} exact={item.exact} activeStyle={{ color: "#000" }}>
+                <NavLink to={item.pageURL} key={index} exact={item.exact} activeClassName="nav-link-active" className="nav-link">
                   {item.pageName}
                 </NavLink>
               );
             })}
           {auth.isAuth && (
-            <button onClick={() => setAuth({ ...auth, isAuth: false })} className="PrimaryButton">
+            <Button className="nav-btn" onClick={() => setAuth({ ...auth, isAuth: false })}>
               Sign out
-            </button>
+            </Button>
           )}
-        </PageLinks>
+        </div>
 
-        <Hamburger onClick={() => setSidebar(true)}>
-          <i className="fas fa-bars" style={{ height: "65px", width: "65px" }}></i>
-        </Hamburger>
-      </NavbarWrapper>
+        <button className="hamburger-wrapper" onClick={() => setSidebar(true)}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="hamburger icon icon-tabler icon-tabler-menu-2"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <line x1="4" y1="6" x2="20" y2="6" />
+            <line x1="4" y1="12" x2="20" y2="12" />
+            <line x1="4" y1="18" x2="20" y2="18" />
+          </svg>
+        </button>
+      </div>
       {children}
-    </React.Fragment>
+    </>
   );
 }

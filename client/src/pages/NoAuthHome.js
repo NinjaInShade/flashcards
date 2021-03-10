@@ -4,7 +4,7 @@ import styled from "styled-components";
 import authenticate from "../static/noAuthHome.svg";
 // Components and util
 import Modal from "../components/util/Modal";
-import Button from "../components/util/Button";
+import Button from "../components/util/button/Button";
 import Auth from "../components/Auth";
 import { typography, device } from "../utils/globalCSS";
 

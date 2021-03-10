@@ -1,0 +1,13 @@
+.btn {
+  color: var(--neutral-100);
+  background-color: var(--purple-600);
+  transition: 150ms ease-in-out;
+  font-size: 18px;
+  padding: 10px 15px;
+  border-radius: 6px;
+  min-width: 150px;
+}
+
+.btn:hover {
+  background: var(--purple-700);
+}

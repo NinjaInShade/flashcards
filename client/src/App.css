@@ -1,8 +1,22 @@
 * {
   margin: 0;
+  padding: 0;
   font-weight: normal;
   box-sizing: border-box;
   font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+}
+
+:root {
+  font-size: 18px;
+
+  /* Primary */
+  --purple-700: #3a269c;
+  --purple-600: #412bb5;
+
+  /* Neutrals */
+  --neutral-900: #000;
+  --neutral-600: #767474;
+  --neutral-100: #fff;
 }
 
 .scrollbar::-webkit-scrollbar-track {
@@ -24,29 +38,8 @@ button {
   border: none;
   outline: none;
   cursor: pointer;
-  font-size: 18px;
-  padding: 12px 15px;
-  border-radius: 5px;
-  min-width: 100px;
-  transition: 150ms ease-in-out;
 }
 
-.PrimaryButton {
-  background: #412bb5;
-  border: 1px solid #412bb5;
-}
-
-.PrimaryButton:hover {
-  background: #281784;
-}
-
-.SecondaryButton {
-  background: none;
-  border: 1px solid #412bb5;
-  color: black;
-}
-
-.SecondaryButton:hover {
-  background: #412bb5;
-  color: white;
+ul {
+  list-style: none;
 }

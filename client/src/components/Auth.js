@@ -8,7 +8,7 @@ import signup from "../static/noAuthHome3.svg";
 import { typography, device } from "../utils/globalCSS";
 import Input from "../components/util/Input";
 import Modal from "../components/util/Modal";
-import Button from "../components/util/Button";
+import Button from "../components/util/button/Button";
 import validateEmail from "../utils/validateEmail";
 import validateUsername from "../utils/validateUsername";
 import validatePassword from "../utils/validatePassword";
@@ -147,9 +147,35 @@ export default function Auth(props) {
         <ContentContainer>
           <Heading>{pageContent === "signup" ? "Sign up" : "Sign in"}</Heading>
           <Inputs>
-            {pageContent === "signup" && <Input label="Username" maxLength="15" margin="15px 0" onChange={(e) => setUsername(e.target.value)} value={username} error={[error.usernameError, error.createUserError]} width="96%" />}
-            <Input label="Email" margin="15px 0" onChange={(e) => setEmail(e.target.value)} value={email} error={[error.emailError, error.wrongUserError, error.serverError]} width="96%" />
-            <Input label="Password" password margin="15px 0 45px 0" onChange={(e) => setPassword(e.target.value)} value={password} error={[error.passwordError]} width="96%" type="password" />
+            {pageContent === "signup" && (
+              <Input
+                label="Username"
+                maxLength="15"
+                margin="15px 0"
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
+                error={[error.usernameError, error.createUserError]}
+                width="96%"
+              />
+            )}
+            <Input
+              label="Email"
+              margin="15px 0"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              error={[error.emailError, error.wrongUserError, error.serverError]}
+              width="96%"
+            />
+            <Input
+              label="Password"
+              password
+              margin="15px 0 45px 0"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              error={[error.passwordError]}
+              width="96%"
+              type="password"
+            />
             <ButtonsContainer>
               <Button type="tertiary" onClick={pageContent === "signup" ? () => setPageContent("signin") : () => setPageContent("signup")}>
                 {pageContent === "signup" ? "Login" : "Sign up"}
@@ -160,7 +186,13 @@ export default function Auth(props) {
             </ButtonsContainer>
           </Inputs>
         </ContentContainer>
-        <ImageContainer>{pageContent === "signup" ? <Image src={signup} alt="signup" style={{ marginTop: "60px" }} /> : <Image src={signin} alt="signin" style={{ marginTop: "60px" }} />}</ImageContainer>
+        <ImageContainer>
+          {pageContent === "signup" ? (
+            <Image src={signup} alt="signup" style={{ marginTop: "60px" }} />
+          ) : (
+            <Image src={signin} alt="signin" style={{ marginTop: "60px" }} />
+          )}
+        </ImageContainer>
       </MainContainer>
     </Modal>
   );
