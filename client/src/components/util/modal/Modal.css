@@ -23,7 +23,7 @@
   background-color: var(--neutral-100);
   transform: translate(-50%, -50%);
   width: 1000px;
-  height: 600px;
+  min-height: 600px;
   padding: 20px;
   border-radius: 8px;
 }

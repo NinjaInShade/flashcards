@@ -1,8 +1,3 @@
-.AddCollection-InputGroup {
-  display: flex;
-  flex-direction: column;
-}
-
 .AddCollection-LabelWrapper {
   width: 300px;
   margin: 15px 0;

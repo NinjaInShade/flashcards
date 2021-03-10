@@ -1,6 +1,5 @@
 // Libraries , css and static files
 import React from "react";
-import styled from "styled-components";
 import close from "../../../static/close.svg";
 
 import "./Modal.css";

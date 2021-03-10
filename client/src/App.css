@@ -9,6 +9,9 @@
 :root {
   font-size: 16px;
 
+  /* Error */
+  --error: #cc0000;
+
   /* Reds */
   --red-800: #aa2546;
   --red-700: #c73357;

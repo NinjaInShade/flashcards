@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Modal from ".././util/modal/Modal";
-import Input from ".././util/Input";
+import Input from ".././util/input/Input";
 
 export default function AddFlashcard({ show, setShow }) {
   const [question, setQuestion] = useState("");

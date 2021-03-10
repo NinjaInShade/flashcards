@@ -1,0 +1,30 @@
+.input-group {
+  margin: 0 auto;
+  width: 250px;
+}
+
+.input-label {
+  color: var(--neutral-600);
+  font-size: 1.2rem;
+}
+
+.input-label-error {
+  color: var(--error);
+}
+
+.input,
+.input-textarea {
+  outline: none;
+  border: none;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  margin-top: 8px;
+  background-color: var(--neutral-200);
+  padding: 15px 10px;
+}
+
+.input-error {
+  color: var(--error);
+  margin-top: 2px;
+  font-size: 1rem;
+}

@@ -1,30 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { icons } from "../../utils/icons";
 import Modal from ".././util/modal/Modal";
-import Input from ".././util/Input";
+import Input from ".././util/input/Input";
 
 import "./AddCollection.css";
 
 export default function AddCollection({ show, setShow }) {
-  const [screenWidth, setScreenWidth] = useState();
   const [collectionName, setCollectionName] = useState("");
   const [iconName, setIconName] = useState("");
   const [error, setError] = useState({});
-
-  // Media query listener
-  let mql = window.matchMedia("(max-width: 330px)");
-
-  function screenTest(e) {
-    if (e.matches) {
-      /* the viewport is 600 pixels wide or less */
-      setScreenWidth(true);
-    } else {
-      /* the viewport is more than than 600 pixels wide */
-      setScreenWidth(false);
-    }
-  }
-
-  mql.addListener(screenTest);
 
   useEffect(() => {
     setCollectionName("");
@@ -53,17 +37,14 @@ export default function AddCollection({ show, setShow }) {
   return (
     <>
       <Modal show={show} setShow={setShow}>
-        <div className="AddCollection-InputGroup">
-          <Input
-            label="Name"
-            maxLength="15"
-            value={collectionName}
-            onChange={(e) => setCollectionName(e.target.value)}
-            error={[error.name]}
-            width={screenWidth ? "220px" : "300px"}
-            placeholder="Collection name"
-          />
-        </div>
+        <Input
+          label="Name"
+          maxLength="20"
+          value={collectionName}
+          setValue={(e) => setCollectionName(e.target.value)}
+          error={[error.name]}
+          placeholder="Collection name"
+        />
         <div className="AddCollection-LabelWrapper">
           <label className="AddCollection-label">Pick an icon</label>
         </div>
