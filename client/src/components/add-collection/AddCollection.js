@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "./AddCollection.css";
 import { icons } from "../../utils/icons";
-import Modal from ".././util/Modal";
+import Modal from ".././util/modal/Modal";
 import Input from ".././util/Input";
+
+import "./AddCollection.css";
 
 export default function AddCollection({ show, setShow }) {
   const [screenWidth, setScreenWidth] = useState();
@@ -50,10 +51,18 @@ export default function AddCollection({ show, setShow }) {
   }
 
   return (
-    <React.Fragment>
-      <Modal show={show} setShow={setShow} asOverlay>
+    <>
+      <Modal show={show} setShow={setShow}>
         <div className="AddCollection-InputGroup">
-          <Input label="Name" maxLength="15" value={collectionName} onChange={(e) => setCollectionName(e.target.value)} error={[error.name]} width={screenWidth ? "220px" : "300px"} placeholder="Collection name" />
+          <Input
+            label="Name"
+            maxLength="15"
+            value={collectionName}
+            onChange={(e) => setCollectionName(e.target.value)}
+            error={[error.name]}
+            width={screenWidth ? "220px" : "300px"}
+            placeholder="Collection name"
+          />
         </div>
         <div className="AddCollection-LabelWrapper">
           <label className="AddCollection-label">Pick an icon</label>
@@ -61,7 +70,13 @@ export default function AddCollection({ show, setShow }) {
         <div className="AddCollection-grid scrollbar">
           {Object.entries(icons).map(([name, icon]) => {
             return (
-              <div className="AddCollection-preview" id={name} key={name} onClick={() => setIconName(name)} style={iconName === name ? { backgroundColor: "#e2e2e2" } : {}}>
+              <div
+                className="AddCollection-preview"
+                id={name}
+                key={name}
+                onClick={() => setIconName(name)}
+                style={iconName === name ? { backgroundColor: "#e2e2e2" } : {}}
+              >
                 <i className={`${icon} fa-2x`} style={{ position: "absolute", color: "#D05775" }}></i>
               </div>
             );
@@ -72,6 +87,6 @@ export default function AddCollection({ show, setShow }) {
         </button>
         <p className="AddCollection-error">{error.collections}</p>
       </Modal>
-    </React.Fragment>
+    </>
   );
 }

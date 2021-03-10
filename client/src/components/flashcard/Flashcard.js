@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Flashcard.css";
-import Modal from ".././util/Modal";
+import Modal from ".././util/modal/Modal";
 
 export default function Flashcard(props) {
   const { frontContent, backContent } = props;
