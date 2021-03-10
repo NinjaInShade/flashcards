@@ -1,11 +1,11 @@
 .CollectionCard-card {
-  background-color: #fff;
+  background-color: var(--neutral-100);
   display: flex;
-  position: relative;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   cursor: pointer;
+  text-decoration: none;
   border-radius: 8px;
   padding: 30px;
   margin: 8px;
@@ -15,6 +15,7 @@
 
 .CollectionCard-card > p {
   margin-top: 10px;
+  text-decoration: none;
 }
 
 .CollectionCard-card:hover {
@@ -24,14 +25,15 @@
 }
 
 .CollectionCard-text {
+  color: var(--neutral-900);
+  font-size: 1.6rem;
   font-weight: 600;
-  font-size: 26px;
   min-width: 150px;
 }
 
 .CollectionCard-lead {
-  font-size: 20px;
-  color: #8e8c8c;
+  font-size: 1.2rem;
+  color: var(--neutral-500);
 }
 
 @media (max-width: 500px) {

@@ -2,9 +2,6 @@
 import React from "react";
 import styled from "styled-components";
 
-// Components and util
-import { colours, typography } from "../../utils/globalCSS";
-
 const Container = styled.div`
   width: ${(props) => props.width || "75%"};
   display: flex;
@@ -13,18 +10,18 @@ const Container = styled.div`
   margin: ${(props) => props.margin};
 `;
 
-const Label = styled.label`
-  font-family: ${typography.secondaryFont};
-  font-size: ${typography.p};
-  margin-bottom: 6px;
-`;
+// const Label = styled.label`
+//   ${"" /* font-family: ${typography.secondaryFont};
+//   font-size: ${typography.p}; */}
+//   margin-bottom: 6px;
+// `;
 
 const InputField = styled.input`
   outline: none;
   border: none;
-  font-family: ${typography.secondaryFont};
+  ${"" /* font-family: ${typography.secondaryFont};
   font-size: ${typography.p};
-  background-color: ${colours.neutral300};
+  background-color: ${colours.neutral300}; */}
   width: 100%;
   padding: 15px 10px;
 `;
@@ -32,17 +29,17 @@ const InputField = styled.input`
 const TextAreaField = styled.textarea`
   outline: none;
   border: none;
-  font-family: ${typography.secondaryFont};
+  ${"" /* font-family: ${typography.secondaryFont};
   font-size: ${typography.p};
-  background-color: ${colours.neutral300};
+  background-color: ${colours.neutral300}; */}
   width: 100%;
   padding: 15px 10px;
 `;
 
 const ErrorText = styled.p`
-  font-family: ${typography.secondaryFont};
+  ${"" /* font-family: ${typography.secondaryFont};
   font-size: ${typography.p};
-  color: ${colours.error100};
+  color: ${colours.error100}; */}
   margin-top: 2px;
 `;
 
@@ -51,7 +48,9 @@ export default function Input(props) {
 
   return (
     <Container width={width} margin={margin}>
-      <Label style={{ color: error.filter((error) => error !== undefined && error !== "").length > 0 ? colours.error100 : colours.neutral500 }}>{label}</Label>
+      {/* <Label style={{ color: error.filter((error) => error !== undefined && error !== "").length > 0 ? colours.error100 : colours.neutral500 }}>
+        {label}
+      </Label> */}
       {type === "textarea" ? (
         <TextAreaField maxLength={maxLength} onChange={onChange} value={value} placeholder={placeholder} rows={rows} />
       ) : (

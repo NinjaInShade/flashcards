@@ -74,6 +74,10 @@
 }
 
 @media (max-width: 450px) {
+  .AuthHome-HeroTextContainer {
+    width: 100%;
+  }
+
   .AuthHome-HeroTextHeading {
     font-size: 3rem;
   }
@@ -81,7 +85,9 @@
   .AuthHome-HeroTextLead {
     font-size: 1.2rem;
   }
+}
 
+@media (max-width: 400px) {
   .AuthHome-btn {
     margin: 40px 0 20px 0;
   }

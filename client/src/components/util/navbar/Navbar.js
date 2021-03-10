@@ -21,7 +21,7 @@ export default function Navbar({ children }) {
       exact: true,
     },
     {
-      pageName: "Test",
+      pageName: "Test yourself",
       pageURL: `/user/${auth.userId}/test`,
       requireAuth: true,
       exact: false,

@@ -1,21 +1,18 @@
 // Libraries , css and static files
 import React, { useContext } from "react";
-import "./CollectionCard.css";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../utils/AuthContext";
 
-export default function CollectionCard(props) {
-  const { name, icon, id, margin, flashcardAmount, className, idTag } = props;
+import "./CollectionCard.css";
+
+export default function CollectionCard({ name, icon, id, flashcardAmount }) {
   const [auth] = useContext(AuthContext);
 
-  function redirectHandler() {
-    window.location.href = `/user/${auth.userId}/collections/${id}`;
-  }
-
   return (
-    <div margin={margin} onClick={redirectHandler} id={idTag} className={`${className} CollectionCard-card`}>
+    <Link to={`/user/${auth.userId}/collections/${id}`} className="CollectionCard-card">
       <i className={`${icon} fa-4x`} style={{ color: "#C73357" }}></i>
       <p className="CollectionCard-text">{name}</p>
       <p className="CollectionCard-lead">{`${flashcardAmount} flashcards`}</p>
-    </div>
+    </Link>
   );
 }

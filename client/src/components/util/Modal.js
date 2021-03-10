@@ -4,7 +4,7 @@ import styled from "styled-components";
 import close from "../../static/close.svg";
 
 // Components and util
-import { colours, device } from "../../utils/globalCSS";
+// import { colours, device } from "../../utils/globalCSS";
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -27,14 +27,14 @@ const ModalContent = styled.div`
   left: 50%;
   margin: ${(props) => (props.asOverlay ? "" : "10vh auto")};
   transform: ${(props) => (props.asOverlay ? "translate(-50%, -50%)" : "")};
-  background-color: ${colours.neutral100};
+  ${"" /* background-color: ${colours.neutral100}; */}
   padding: ${(props) => (props.asOverlay ? "15px" : "30px")};
   width: 900px;
   height: 650px;
   box-shadow: ${(props) => (props.asOverlay ? "" : "0px 5px 16px 0px rgba(0,0,0,0.25)")};
   tansition: 0.7 ease-in-out;
 
-  @media ${device.laptop} {
+  ${"" /* @media ${device.laptop} { */}
     width: 100%;
     height: fit-content;
     margin: ${(props) => (props.asOverlay ? "" : "0 auto")};
