@@ -9,7 +9,7 @@ export const AuthContext = createContext();
 export function AuthProvider(props) {
   const { children } = props;
   const [auth, setAuth] = useState({
-    isAuth: true,
+    isAuth: false,
     userId: "53bac2rcba32",
     username: "leon",
     supporter: true,

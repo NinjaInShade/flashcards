@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 
 // Components and util
 import AuthHome from "../pages/auth-home/AuthHome";
-import NoAuthHome from "../pages/NoAuthHome";
+import NoAuthHome from "../pages/NoAuthHome/NoAuthHome";
 import { AuthContext } from "../utils/AuthContext";
 
 export default function Home() {
