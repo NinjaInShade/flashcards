@@ -9,13 +9,17 @@
 :root {
   font-size: 16px;
 
-  /* Primary */
+  /* Reds */
+  --red-300: #f67354;
+
+  /* Purples */
   --purple-700: #3a269c;
   --purple-600: #412bb5;
 
   /* Neutrals */
   --neutral-900: #000;
   --neutral-600: #767474;
+  --neutral-200: #f6f6fa;
   --neutral-100: #fff;
 }
 

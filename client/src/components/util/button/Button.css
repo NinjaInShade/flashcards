@@ -11,3 +11,14 @@
 .btn:hover {
   background: var(--purple-700);
 }
+
+.ghost-btn {
+  border: 1px solid var(--purple-700);
+  color: var(--purple-600);
+  background: none;
+}
+
+.ghost-btn:hover {
+  background-color: var(--purple-600);
+  color: var(--neutral-100);
+}

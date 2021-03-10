@@ -1,11 +1,13 @@
 // Libraries , css and static files
 import React, { useState, useContext } from "react";
-import GliderComponent from "react-glider-carousel";
-import "./AuthHome.css";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../utils/AuthContext";
+import GliderComponent from "react-glider-carousel";
 import CollectionCard from "../../components/collection-card/CollectionCard";
 import AddCollection from "../../components/add-collection/AddCollection";
-import { AuthContext } from "../../utils/AuthContext";
+import Button from "../../components/util/button/Button";
+
+import "./AuthHome.css";
 
 export default function AuthHome() {
   const [auth] = useContext(AuthContext);
@@ -19,18 +21,26 @@ export default function AuthHome() {
           <h1 className="AuthHome-HeroTextHeading">Welcome back</h1>
           <p className="AuthHome-HeroTextLead">View all your collection's here</p>
           <Link to={`/user/${auth.userId}/test`}>
-            <button className="AuthHome-button PrimaryButton">Test yourself</button>
+            <Button className="AuthHome-btn">Test yourself</Button>
           </Link>
-          <button className="SecondaryButton" onClick={() => setShow(true)}>
+          <Button ghost onClick={() => setShow(true)}>
             Create new collection
-          </button>
+          </Button>
         </div>
       </div>
       <div className="AuthHome-grey">
         <div className="AuthHome-CollectionsContainer">
           <GliderComponent hasArrows={true} hasDots={true} settings={{ slidesToShow: 5, slidesToScroll: 1, draggable: true, dragVelocity: 1 }}>
             {auth.collections.map((collection) => {
-              return <CollectionCard id={collection.id} key={collection.id} name={collection.name} icon={collection.icon} flashcardAmount={collection.flashcards.length} />;
+              return (
+                <CollectionCard
+                  id={collection.id}
+                  key={collection.id}
+                  name={collection.name}
+                  icon={collection.icon}
+                  flashcardAmount={collection.flashcards.length}
+                />
+              );
             })}
           </GliderComponent>
         </div>
