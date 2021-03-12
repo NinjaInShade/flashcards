@@ -10,9 +10,16 @@ export default function Input({ value, setValue, placeholder, label, type = "tex
         {label}
       </label>
       {type === "textarea" ? (
-        <textarea className="input-textarea" maxLength={maxLength} onChange={setValue} value={value} placeholder={placeholder} rows={rows} />
+        <textarea
+          className="input-textarea"
+          maxLength={maxLength}
+          value={value}
+          onChange={(e) => setValue(e)}
+          placeholder={placeholder}
+          rows={rows}
+        />
       ) : (
-        <input className="input" type={type} maxLength={maxLength} onChange={setValue} value={value} placeholder={placeholder} />
+        <input className="input" type={type} maxLength={maxLength} value={value} onChange={setValue} placeholder={placeholder} />
       )}
       <p className="input-error">{error.map((error) => error)}</p>
     </div>

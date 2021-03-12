@@ -1,7 +1,16 @@
+.Collection-HeroTextContainer {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.Collection-HeroTextLead {
+  font-size: 1.6rem;
+}
+
 .Collection-icon {
-  color: #c73357;
-  margin-right: 10px;
-  font-size: 3rem;
+  color: var(--red-700);
+  margin-right: 1rem;
+  font-size: 4rem;
 }
 
 .Collection-header {
@@ -9,12 +18,80 @@
   align-items: center;
 }
 
-.Collection-header h1 {
-  margin-right: 10px;
+.Collection-HeroTextHeading {
+  font-weight: bold;
+  font-size: 5rem;
+  margin-right: 1rem;
 }
 
-.Collection-header button svg {
-  font-size: 2rem;
-  margin: 0 5px;
-  color: #442eba;
+.Collection-header-controls {
+  color: var(--purple-600);
+  font-size: 3rem;
+  margin: 0 0.6rem;
+}
+
+.Collection-controls {
+  width: 400px;
+}
+
+.Collection-edit-btns {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.Collection-edit-btn,
+.Collection-delete-btn {
+  width: 48%;
+}
+
+.Collection-add-btn {
+  width: 100%;
+}
+
+@media (max-width: 500px) {
+  .Collection-HeroTextContainer {
+    width: 100%;
+  }
+
+  .Collection-header {
+    justify-content: center;
+  }
+
+  .Collection-HeroTextLead {
+    text-align: center;
+  }
+
+  .Collection-HeroTextHeading {
+    margin-right: 0;
+  }
+
+  .Collection-controls {
+    width: 100%;
+  }
+
+  .Collection-edit-btns {
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+
+  .Collection-edit-btn,
+  .Collection-delete-btn {
+    width: 100%;
+    margin-top: 1.5rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .Collection-HeroTextHeading,
+  .Collection-icon {
+    font-size: 2.5rem;
+  }
+
+  .Collection-header {
+    margin-bottom: 1.5rem;
+  }
 }

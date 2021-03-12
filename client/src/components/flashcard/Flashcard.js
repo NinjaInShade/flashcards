@@ -1,17 +1,23 @@
 import React, { useState } from "react";
-import "./Flashcard.css";
 import Modal from ".././util/modal/Modal";
+import ReactCardFlip from "react-card-flip";
+
+import "./Flashcard.css";
 
 export default function Flashcard(props) {
   const { frontContent, backContent } = props;
+  const [modalContent, setModalContent] = useState("");
   const [flip, setFlip] = useState(false);
   const [show, setShow] = useState(false);
 
-  let ellipsis;
-  let backContentFinal = backContent;
-  if (backContent.length > 350) {
-    backContentFinal = backContent.substring(0, 350);
-    ellipsis = "...";
+  function showFull(type) {
+    if (type === "answer") {
+      setModalContent("answer");
+    } else {
+      setModalContent("question");
+    }
+
+    setShow(!show);
   }
 
   function editFlashcard() {
@@ -23,51 +29,66 @@ export default function Flashcard(props) {
   }
 
   return (
-    <div className="Flashcard-container">
-      <Modal show={show} setShow={setShow} asOverlay>
-        <h1>Full answer:</h1>
-        <div className="Flashcard-ModalTextContainer">
-          <div className="Flashcard-ModalText">{backContent}</div>
-        </div>
+    <>
+      <Modal show={show} setShow={setShow}>
+        <h1 className="flashcard-modal-title">Full {modalContent}:</h1>
+        <p className="flashcard-modal-content">{modalContent === "answer" ? backContent : frontContent}</p>
       </Modal>
-      <div className="Flashcard-card" style={flip ? { transform: "perspective(1000px) rotateY(180deg)" } : {}}>
-        <div className="Flashcard-content" style={{ display: flip ? "none" : "flex" }}>
-          <p className="Flashcard-title">Question</p>
-          <div className="Flashcard-InsideContent">
-            <p className="Flashcard-InsideTextContent">{frontContent}</p>
-          </div>
-          <div className="Flashcard-flip">
-            <button className="Flashcard-icons" onClick={() => editFlashcard()}>
-              <i className="fas fa-edit"></i>
+      <ReactCardFlip isFlipped={flip} containerStyle={{ margin: "15px", width: "100%" }} infinite={true}>
+        <div className="flashcard">
+          <p className="flashcard-title">Question</p>
+          <p className="flashcard-content">
+            {frontContent.length > 150 ? (
+              <>
+                {`${frontContent.substring(0, 150)}`}
+                <span className="flashcard-ellipsis" onClick={() => showFull("question")}>
+                  ...
+                </span>
+              </>
+            ) : (
+              frontContent
+            )}
+          </p>
+          <div className="flashcard-flip">
+            <button onClick={() => editFlashcard()}>
+              <i className="fas fa-edit flashcard-icon"></i>
             </button>
-            <button className="Flashcard-icons" onClick={() => deleteFlashcard()}>
-              <i className="fas fa-trash"></i>
+            <button onClick={() => deleteFlashcard()}>
+              <i className="fas fa-trash flashcard-icon"></i>
             </button>
-            <p onClick={() => setFlip(!flip)}>Flip &gt;&gt;</p>
+            <p onClick={() => setFlip(!flip)} className="flashcard-flip-text">
+              Flip &gt;&gt;
+            </p>
           </div>
         </div>
 
-        <div className="Flashcard-content" style={{ transform: "rotateY(180deg)", display: flip ? "flex" : "none" }}>
-          <p className="Flashcard-title">Answer</p>
-          <div className="Flashcard-InsideContent">
-            <p className="Flashcard-InsideTextContent">
-              {backContentFinal}
-              <span className="Flashcard-ellipsis" onClick={() => setShow(true)}>
-                {ellipsis}
-              </span>
+        <div className="flashcard">
+          <p className="flashcard-title">Answer</p>
+          <p className="flashcard-content">
+            {backContent.length > 200 ? (
+              <>
+                {`${backContent.substring(0, 200)}`}
+                <span className="flashcard-ellipsis" onClick={() => showFull("answer")}>
+                  ...
+                </span>
+              </>
+            ) : (
+              backContent
+            )}
+          </p>
+          <div className="flashcard-flip">
+            <button onClick={() => editFlashcard()}>
+              <i className="fas fa-edit flashcard-icon"></i>
+            </button>
+            <button onClick={() => deleteFlashcard()}>
+              <i className="fas fa-trash flashcard-icon"></i>
+            </button>
+            <p onClick={() => setFlip(!flip)} className="flashcard-flip-text">
+              Flip &gt;&gt;
             </p>
           </div>
-          <div className="Flashcard-flip">
-            <button className="Flashcard-icons" onClick={() => editFlashcard()}>
-              <i className="fas fa-edit"></i>
-            </button>
-            <button className="Flashcard-icons" onClick={() => deleteFlashcard()}>
-              <i className="fas fa-trash"></i>
-            </button>
-            <p onClick={() => setFlip(!flip)}>Flip &gt;&gt;</p>
-          </div>
         </div>
-      </div>
-    </div>
+      </ReactCardFlip>
+    </>
   );
 }
