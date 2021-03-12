@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import Home from "./utils/Home";
 import Navbar from "./components/util/navbar/Navbar";
 import Collection from "./pages/collection/Collection";
+import ProtectedRoute from "./utils/ProtectedRoute";
 import { AuthProvider } from "./utils/AuthContext";
 
 import "./App.css";
@@ -16,7 +17,7 @@ export default function App() {
       <Route path="/" component={Home} exact />
       <Route path="/test" exact />
       <Route path="/test/:collectionId" exact />
-      <Route path="/user/:userId/collections/:collectionId" component={Collection} exact />
+      <ProtectedRoute path="/user/:userId/collections/:collectionId" component={Collection} exact />
       <Route path="*">
         <Redirect to="/" />
       </Route>
