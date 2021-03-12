@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { icons } from "../../utils/icons";
 import Modal from ".././util/modal/Modal";
+import Button from "../util/button/Button";
 import Input from ".././util/input/Input";
 
 import "./AddCollection.css";
@@ -16,10 +17,16 @@ export default function AddCollection({ show, setShow }) {
     setError({});
   }, [show]);
 
-  function addGroupHandler() {
+  function addGroupHandler(e) {
+    e.preventDefault();
+
     let newError = { name: "", collections: "" };
-    if (!collectionName || collectionName.length > 15) {
+    if (!collectionName) {
       newError.name = "* Please provide a name";
+    }
+
+    if (collectionName.length > 20) {
+      newError.name = "* Cannot exceed 20 chars";
     }
 
     if (iconName === "") {
@@ -37,36 +44,37 @@ export default function AddCollection({ show, setShow }) {
   return (
     <>
       <Modal show={show} setShow={setShow}>
-        <Input
-          label="Name"
-          maxLength="20"
-          value={collectionName}
-          setValue={(e) => setCollectionName(e.target.value)}
-          error={[error.name]}
-          placeholder="Collection name"
-        />
-        <div className="AddCollection-LabelWrapper">
-          <label className="AddCollection-label">Pick an icon</label>
-        </div>
-        <div className="AddCollection-grid scrollbar">
-          {Object.entries(icons).map(([name, icon]) => {
-            return (
-              <div
-                className="AddCollection-preview"
-                id={name}
-                key={name}
-                onClick={() => setIconName(name)}
-                style={iconName === name ? { backgroundColor: "#e2e2e2" } : {}}
-              >
-                <i className={`${icon} fa-2x`} style={{ position: "absolute", color: "#D05775" }}></i>
-              </div>
-            );
-          })}
-        </div>
-        <button className="PrimaryButton" onClick={addGroupHandler}>
-          Create group
-        </button>
-        <p className="AddCollection-error">{error.collections}</p>
+        <form className="AddCollection-form">
+          <Input
+            label="Name"
+            maxLength="20"
+            value={collectionName}
+            setValue={(e) => setCollectionName(e.target.value)}
+            error={[error.name]}
+            placeholder="Collection name"
+          />
+          <div className="AddCollection-label-container">
+            <label className="AddCollection-label">Pick an icon</label>
+          </div>
+          <div className="AddCollection-grid scrollbar">
+            {Object.entries(icons).map(([name, icon]) => {
+              return (
+                <div
+                  className={`AddCollection-preview ${iconName === name && "AddCollection-preview-active"}`}
+                  id={name}
+                  key={name}
+                  onClick={() => setIconName(name)}
+                >
+                  <i className={`${icon} fa-2x AddCollection-collection-icon`}></i>
+                </div>
+              );
+            })}
+          </div>
+          <Button onClick={(e) => addGroupHandler(e)} type="submit" className="AddCollection-btn">
+            Create collection
+          </Button>
+          <p className="AddCollection-error">{error.collections}</p>
+        </form>
       </Modal>
     </>
   );

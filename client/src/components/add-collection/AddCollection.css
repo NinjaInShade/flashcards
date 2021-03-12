@@ -1,6 +1,6 @@
-.AddCollection-LabelWrapper {
-  width: 300px;
-  margin: 15px 0;
+.AddCollection-label-container {
+  width: 50%;
+  margin: 1.5rem auto 1rem auto;
 }
 
 .AddCollection-label {
@@ -9,46 +9,67 @@
 
 .AddCollection-error {
   font-family: "Roboto Mono", monospace;
-  color: #d0454c;
-  margin-top: 2px;
+  color: var(--error);
+  width: 50%;
+  margin: 0.5rem auto 0 auto;
 }
 
 .AddCollection-grid {
-  width: 50%;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 10px;
-  max-height: 500px;
+  margin: auto;
   overflow-y: scroll;
-  background-color: #f7f7f7;
+  background-color: var(--neutral-200);
+  width: 50%;
+  padding: 20px;
+  max-height: 500px;
 }
 
 .AddCollection-preview {
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  background-color: var(--neutral-100);
   margin: 10px;
   border-radius: 8px;
-  padding: 40px;
-  background-color: #fff;
-  cursor: pointer;
+  width: 80px;
+  height: 80px;
 }
 
+.AddCollection-preview-active,
 .AddCollection-preview:hover {
-  background-color: #e2e2e2;
+  background-color: var(--neutral-300);
 }
 
-@media (max-width: 660px) {
-  .AddCollection-grid {
-    width: 300px;
+.AddCollection-form .input-group .input {
+  width: 100%;
+  min-width: 0;
+}
+
+.AddCollection-form .input-group {
+  width: 50%;
+}
+
+.AddCollection-collection-icon {
+  color: var(--red-300);
+}
+
+.AddCollection-btn {
+  width: 50%;
+  margin: 1.5rem auto 0 auto;
+}
+
+@media (max-width: 650px) {
+  .AddCollection-grid,
+  .AddCollection-label-container,
+  .AddCollection-btn,
+  .AddCollection-error {
+    width: 100%;
   }
-}
 
-@media (max-width: 330px) {
-  .AddCollection-LabelWrapper,
-  .AddCollection-grid {
-    width: 220px;
+  .AddCollection-form .input-group {
+    width: 100%;
   }
 }

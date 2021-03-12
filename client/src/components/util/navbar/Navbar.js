@@ -3,7 +3,7 @@ import React, { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../../utils/AuthContext";
 import Button from "../../util/button/Button";
-import Logo from "../../../static/Logo.png";
+import Logo from "../../../static/Logo.svg";
 import close from "../../../static/close.svg";
 
 import "./Navbar.css";
