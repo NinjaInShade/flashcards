@@ -3,9 +3,9 @@ import React from "react";
 
 import "./Input.css";
 
-export default function Input({ value, setValue, placeholder, label, type = "text", maxLength, error, rows }) {
+export default function Input({ value, setValue, placeholder, label, type = "text", maxLength, error, rows, className }) {
   return (
-    <div className="input-group">
+    <div className={`input-group ${className && className}`}>
       <label className={`input-label ${error.filter((error) => error !== undefined && error !== "").length > 0 && "input-label-error"}`}>
         {label}
       </label>
@@ -14,12 +14,19 @@ export default function Input({ value, setValue, placeholder, label, type = "tex
           className="input-textarea"
           maxLength={maxLength}
           value={value}
-          onChange={(e) => setValue(e)}
+          onChange={(e) => setValue(e.target.value)}
           placeholder={placeholder}
           rows={rows}
         />
       ) : (
-        <input className="input" type={type} maxLength={maxLength} value={value} onChange={setValue} placeholder={placeholder} />
+        <input
+          className="input"
+          type={type}
+          maxLength={maxLength}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder={placeholder}
+        />
       )}
       <p className="input-error">{error.map((error) => error)}</p>
     </div>

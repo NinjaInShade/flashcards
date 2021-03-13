@@ -1,0 +1,14 @@
+.add-flashcard-input {
+  margin-bottom: 2rem;
+}
+
+.add-flashcard-input,
+.add-flashcard-input textarea {
+  width: 100%;
+}
+
+.add-flashcard-btn {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
