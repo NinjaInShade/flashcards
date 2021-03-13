@@ -13,6 +13,10 @@
   transition-duration: 200ms;
 }
 
+.CollectionCard-icon {
+  color: var(--red-700);
+}
+
 .CollectionCard-card > p {
   margin-top: 10px;
   text-decoration: none;

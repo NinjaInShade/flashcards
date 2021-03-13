@@ -57,6 +57,3 @@ export default function AuthHome() {
     </div>
   );
 }
-
-/* <DonutChart size="150" strokewidth="25" value={`${(values.groups.value / values.groups.max) * 100}`} valuelabel={`${values.groups.value}/${values.groups.max}`} />
-<DonutChart size="150" strokewidth="25" value={`${(values.flashcards.value / values.flashcards.max) * 100}`} valuelabel={`${values.flashcards.value}/${values.flashcards.max}`} /> */
