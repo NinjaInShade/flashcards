@@ -10,7 +10,7 @@ import Button from "../../components/util/button/Button";
 import "./Collection.css";
 
 export default function Collections() {
-  const [auth] = useContext(AuthContext);
+  const { auth } = useContext(AuthContext);
   const [show, setShow] = useState(false);
   const [currentCollection, setCurrentCollection] = useState();
   const { collectionId } = useParams();

@@ -10,7 +10,7 @@ import "./Navbar.css";
 import "./Sidebar.css";
 
 export default function Navbar({ children }) {
-  const [auth, setAuth] = useContext(AuthContext);
+  const { auth, setAuth } = useContext(AuthContext);
   const [sidebar, setSidebar] = useState(false);
 
   const navLinks = [

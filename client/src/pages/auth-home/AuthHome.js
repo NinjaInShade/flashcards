@@ -10,7 +10,7 @@ import Button from "../../components/util/button/Button";
 import "./AuthHome.css";
 
 export default function AuthHome() {
-  const [auth, setAuth] = useContext(AuthContext);
+  const { auth, setAuth } = useContext(AuthContext);
   const [show, setShow] = useState(false);
 
   const breakPoints = [

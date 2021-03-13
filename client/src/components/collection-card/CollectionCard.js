@@ -6,7 +6,7 @@ import { AuthContext } from "../../utils/AuthContext";
 import "./CollectionCard.css";
 
 export default function CollectionCard({ name, icon, id, flashcardAmount }) {
-  const [auth] = useContext(AuthContext);
+  const { auth } = useContext(AuthContext);
 
   return (
     <Link to={`/user/${auth.userId}/collections/${id}`} className="CollectionCard-card">

@@ -7,6 +7,6 @@ import AuthHome from "../pages/auth-home/AuthHome";
 import NoAuthHome from "../pages/NoAuthHome/NoAuthHome";
 
 export default function Home() {
-  const [auth] = useContext(AuthContext);
+  const { auth } = useContext(AuthContext);
   return auth.isAuth ? <AuthHome /> : <NoAuthHome />;
 }
