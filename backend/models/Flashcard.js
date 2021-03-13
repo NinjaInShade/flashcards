@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const flashcardSchema = new Schema(
@@ -10,4 +10,4 @@ const flashcardSchema = new Schema(
   { timestamps: true }
 );
 
-export default Flashcard = mongoose.model("Flashcard", flashcardSchema);
+module.exports = mongoose.model("Flashcard", flashcardSchema);

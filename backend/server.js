@@ -1,10 +1,64 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-require("dotenv").config();
+const passport = require("passport");
+const cookieSession = require("cookie-session");
+const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const authRoutes = require("./routes/auth");
 const flashcardRoutes = require("./routes/flashcards");
 const collectionRoutes = require("./routes/collections");
+const User = require("./models/User");
+
+passport.serializeUser(function (user, done) {
+  done(null, user._id);
+});
+
+passport.deserializeUser(function (id, done) {
+  User.findById(id, function (err, user) {
+    done(err, user);
+  });
+});
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: "http://localhost:5000/auth/google/callback",
+    },
+    function (accessToken, refreshToken, profile, done) {
+      // Check if user already exists in our db with the given profile ID
+      User.findOne({ googleId: profile.id }).then((user) => {
+        if (user) {
+          // User is found therefore we don't need to create new one
+          done(null, user);
+        } else {
+          // If not create a new user
+          new User({
+            googleId: profile.id,
+            email: profile._json.email,
+            name: profile.displayName,
+          })
+            .save()
+            .then((user) => {
+              done(null, user);
+            });
+        }
+      });
+    }
+  )
+);
+
+app.use(
+  cookieSession({
+    name: "flashcardSession",
+    secret: process.env.SESSION_SECRET,
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Route middlewares
 app.use("/auth", authRoutes);
