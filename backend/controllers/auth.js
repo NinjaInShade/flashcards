@@ -1,5 +1,3 @@
-const passport = require("passport");
-
 function getAuthFailure(req, res, next) {
   return res.status(401).json({
     error: "Authenticate unsuccessfull",
