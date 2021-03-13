@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const cookieSession = require("cookie-session");
@@ -10,14 +11,18 @@ const flashcardRoutes = require("./routes/flashcards");
 const collectionRoutes = require("./routes/collections");
 const User = require("./models/User");
 
+app.use(cors({ credentials: true, origin: process.env.FRONTEND_DOMAIN }));
+
 passport.serializeUser(function (user, done) {
   done(null, user._id);
 });
 
 passport.deserializeUser(function (id, done) {
-  User.findById(id, function (err, user) {
-    done(err, user);
-  });
+  User.findById(id)
+    .then((user) => {
+      done(null, user);
+    })
+    .catch((err) => console.log(err));
 });
 
 passport.use(

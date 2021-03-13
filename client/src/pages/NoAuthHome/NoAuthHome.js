@@ -7,7 +7,7 @@ import "./NoAuthHome.css";
 
 export default function NoAuthHome(props) {
   function authenticate() {
-    console.log("Send req to backend to auth");
+    window.open(`${process.env.REACT_APP_API_DOMAIN}/auth/google`, "_self");
   }
 
   return (

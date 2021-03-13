@@ -12,7 +12,7 @@ export function AuthProvider(props) {
     isAuth: true,
     userId: "53bac2rcba32",
     username: "leon",
-    supporter: true,
+    email: "leon@gmail.com",
     collections: [
       {
         name: "Maths1",
