@@ -28,5 +28,5 @@ export default function Home() {
       });
   }, [setAuth]);
 
-  return auth.isAuth ? <AuthHome loading={loading} /> : <NoAuthHome />;
+  return auth.isAuth ? <AuthHome loading={loading} /> : <NoAuthHome loading={loading} />;
 }
