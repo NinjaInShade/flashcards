@@ -13,6 +13,7 @@ import "./Collection.css";
 
 export default function Collections() {
   const { auth } = useContext(AuthContext);
+  const [deleted, setDeleted] = useState(false);
   const [show, setShow] = useState(false);
   const [currentCollection, setCurrentCollection] = useState();
   const { collectionId } = useParams();
@@ -34,7 +35,15 @@ export default function Collections() {
   }
 
   function deleteCollection() {
-    console.log("Delete collection");
+    fetch(`${process.env.REACT_APP_API_DOMAIN}/collections/${collectionId}`, {
+      credentials: "include",
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then(() => {
+        setDeleted(true);
+      })
+      .catch((err) => console.log(err));
   }
 
   const content = currentCollection ? (
@@ -93,5 +102,5 @@ export default function Collections() {
     </div>
   );
 
-  return auth.isAuth ? content : <Redirect to="/" />;
+  return deleted ? <Redirect to="/" /> : content;
 }
