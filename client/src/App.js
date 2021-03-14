@@ -3,6 +3,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 
 // Components and util
+import RouteTracker from "./utils/RouteTracker";
 import Home from "./utils/Home";
 import Navbar from "./components/util/navbar/Navbar";
 import Collection from "./pages/collection/Collection";
@@ -14,7 +15,9 @@ import "./App.css";
 export default function App() {
   const routes = (
     <Switch>
-      <Route path="/" component={Home} exact />
+      <Route path="/" exact>
+        <Home />
+      </Route>
       <Route path="/test" exact />
       <Route path="/test/:collectionId" exact />
       <ProtectedRoute path="/user/:userId/collections/:collectionId" component={Collection} exact />
@@ -27,7 +30,9 @@ export default function App() {
   return (
     <AuthProvider>
       <Router>
-        <Navbar>{routes}</Navbar>
+        <RouteTracker>
+          <Navbar>{routes}</Navbar>
+        </RouteTracker>
       </Router>
     </AuthProvider>
   );

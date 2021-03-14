@@ -1,5 +1,6 @@
 // Libraries , css and static files
 import React, { useContext, useEffect, useState } from "react";
+import { Redirect } from "react-router-dom";
 import { AuthContext } from "../utils/AuthContext";
 
 // Components and util
@@ -9,6 +10,8 @@ import NoAuthHome from "../pages/NoAuthHome/NoAuthHome";
 export default function Home() {
   const { auth, setAuth } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
+
+  const latestPage = localStorage.getItem("latestPage") || "/";
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_DOMAIN}/auth/user/full`, { credentials: "include" })
@@ -28,5 +31,5 @@ export default function Home() {
       });
   }, [setAuth]);
 
-  return auth.isAuth ? <AuthHome loading={loading} /> : <NoAuthHome loading={loading} />;
+  return auth.isAuth ? latestPage === "/" ? <AuthHome loading={loading} /> : <Redirect to={latestPage} /> : <NoAuthHome loading={loading} />;
 }
