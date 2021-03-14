@@ -70,7 +70,15 @@ export default function Collections() {
           <div className="AuthHome-CollectionsContainer">
             <Carousel breakPoints={breakPoints}>
               {currentCollection.flashcards.map((flashcard, index) => {
-                return <Flashcard frontContent={flashcard.question} backContent={flashcard.answer} key={index} id={flashcard.id} />;
+                return (
+                  <Flashcard
+                    frontContent={flashcard.question}
+                    backContent={flashcard.answer}
+                    key={index}
+                    id={flashcard._id}
+                    currentCollectionId={collectionId}
+                  />
+                );
               })}
             </Carousel>
           </div>

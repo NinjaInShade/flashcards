@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Modal from ".././util/modal/Modal";
+import { AuthContext } from "../../utils/AuthContext";
 import ReactCardFlip from "react-card-flip";
 
 import "./Flashcard.css";
 
-export default function Flashcard(props) {
-  const { frontContent, backContent } = props;
+export default function Flashcard({ frontContent, backContent, id, currentCollectionId }) {
   const [modalContent, setModalContent] = useState("");
   const [flip, setFlip] = useState(false);
   const [show, setShow] = useState(false);
+
+  const { auth, setAuth } = useContext(AuthContext);
 
   function showFull(type) {
     if (type === "answer") {
@@ -25,7 +27,23 @@ export default function Flashcard(props) {
   }
 
   function deleteFlashcard() {
-    console.log("deleted");
+    fetch(`${process.env.REACT_APP_API_DOMAIN}/flashcards/${id}`, {
+      method: "DELETE",
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        const collectionIndex = auth.collections.findIndex((c) => c._id.toString() === currentCollectionId.toString());
+
+        const updatedFlashcards = auth.collections[collectionIndex].flashcards.filter((f) => f._id !== id);
+        const updatedCollection = { ...auth.collections[collectionIndex], flashcards: updatedFlashcards };
+
+        let updatedCollections = [...auth.collections];
+        updatedCollections[collectionIndex] = updatedCollection;
+
+        setAuth({ ...auth, collections: updatedCollections });
+      })
+      .catch((err) => console.log(err));
   }
 
   return (

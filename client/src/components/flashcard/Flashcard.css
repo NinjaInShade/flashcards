@@ -36,6 +36,7 @@
 .flashcard-icon,
 .flashcard-ellipsis {
   color: var(--neutral-700);
+  font-size: 1.2rem;
 }
 
 .flashcard-icon {
