@@ -10,6 +10,7 @@ router.get(
   "/google",
   passport.authenticate("google", {
     scope: ["profile", "email"],
+    prompt: "consent",
   })
 );
 
@@ -17,9 +18,13 @@ router.get(
 router.get("/google/failure", authController.getAuthFailure);
 
 // Auth user was successfull, callback route
-router.get("/google/callback", passport.authenticate("google", { failureRedirect: "/auth/google/failure" }), function (req, res) {
-  return res.status(200).redirect(`${process.env.FRONTEND_DOMAIN}`);
-});
+router.get(
+  "/google/callback",
+  passport.authenticate("google", { failureRedirect: "/auth/google/failure" }),
+  function (req, res) {
+    return res.status(200).redirect(`${process.env.FRONTEND_DOMAIN}`);
+  }
+);
 
 router.get("/logout", authController.getLogout);
 

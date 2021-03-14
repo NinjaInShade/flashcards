@@ -28,9 +28,22 @@ export default function Navbar({ children }) {
     },
   ];
 
+  function logout() {
+    fetch(`${process.env.REACT_APP_API_DOMAIN}/auth/logout`, { credentials: "include" })
+      .then((res) => res.json())
+      .then((data) => {
+        setAuth({ isAuth: false });
+        console.log(data);
+      })
+      .catch((err) => console.log(err));
+  }
+
   return (
     <>
-      <div className={`sidebar-overlay ${!sidebar && "sidebar-overlay-hidden"}`} onClick={() => setSidebar(false)}></div>
+      <div
+        className={`sidebar-overlay ${!sidebar && "sidebar-overlay-hidden"}`}
+        onClick={() => setSidebar(false)}
+      ></div>
       <div className="sidebar-panel" style={sidebar ? {} : { transform: "translateX(100%)" }}>
         <button onClick={() => setSidebar(false)} className="sidebar-close-btn">
           <img src={close} alt="close sidebar" className="sidebar-close" />
@@ -41,7 +54,13 @@ export default function Navbar({ children }) {
             .map((item, index) => {
               return (
                 <li onClick={() => setSidebar(false)} key={index} className="sidebar-list-item">
-                  <NavLink to={item.pageURL} key={item.pageURL} exact={item.exact} activeClassName="nav-link-active" className="nav-link">
+                  <NavLink
+                    to={item.pageURL}
+                    key={item.pageURL}
+                    exact={item.exact}
+                    activeClassName="nav-link-active"
+                    className="nav-link"
+                  >
                     {item.pageName}
                   </NavLink>
                 </li>
@@ -49,7 +68,7 @@ export default function Navbar({ children }) {
             })}
           {auth.isAuth && (
             <li>
-              <Button className="sidebar-btn" onClick={() => setAuth({ ...auth, isAuth: false })}>
+              <Button className="sidebar-btn" onClick={logout}>
                 Sign out
               </Button>
             </li>
@@ -67,13 +86,19 @@ export default function Navbar({ children }) {
             .filter((item) => (item.requireAuth ? auth.isAuth : true))
             .map((item, index) => {
               return (
-                <NavLink to={item.pageURL} key={index} exact={item.exact} activeClassName="nav-link-active" className="nav-link">
+                <NavLink
+                  to={item.pageURL}
+                  key={index}
+                  exact={item.exact}
+                  activeClassName="nav-link-active"
+                  className="nav-link"
+                >
                   {item.pageName}
                 </NavLink>
               );
             })}
           {auth.isAuth && (
-            <Button className="nav-btn" onClick={() => setAuth({ ...auth, isAuth: false })}>
+            <Button className="nav-btn" onClick={logout}>
               Sign out
             </Button>
           )}
