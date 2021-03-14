@@ -2,7 +2,7 @@ function getUser(req, res, next) {
   if (req.user) {
     return res.status(200).json({
       message: "User from session found",
-      user: { name: req.user.name, _id: req.user._id, email: req.user.email },
+      user: { name: req.user.name, _id: req.user._id, email: req.user.email, collections: req.user.collections },
     });
   }
 

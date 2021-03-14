@@ -11,6 +11,7 @@ const flashcardRoutes = require("./routes/flashcards");
 const collectionRoutes = require("./routes/collections");
 const User = require("./models/User");
 
+app.use(express.json());
 app.use(cors({ credentials: true, origin: process.env.FRONTEND_DOMAIN }));
 
 passport.serializeUser(function (user, done) {
