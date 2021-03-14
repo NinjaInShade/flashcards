@@ -49,15 +49,18 @@ export default function AddFlashcard({ show, setShow, collectionId }) {
             return;
           }
 
-          let updatedCollections = [...auth.collections];
+          let collections = [...auth.collections];
           const collectionIndex = auth.collections.findIndex((c) => c._id === collectionId);
+          let updatedCollection = { ...auth.collections[collectionIndex] };
 
-          updatedCollections[collectionIndex] = {
-            ...updatedCollections[collectionIndex],
-            flashcards: [...updatedCollections[collectionIndex].flashcards, data.newFlashcard],
+          updatedCollection = {
+            ...collections[collectionIndex],
+            flashcards: [...updatedCollection.flashcards, data.newFlashcard],
           };
 
-          setAuth({ ...auth, collections: updatedCollections });
+          collections[collectionIndex] = updatedCollection;
+
+          setAuth({ ...auth, collections });
           setShow(false);
         })
         .catch((err) => {
