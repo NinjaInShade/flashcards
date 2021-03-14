@@ -2,6 +2,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../utils/AuthContext";
+import { icons } from "../../utils/icons";
+import LoadingSpinner from "../../components/util/loadingSpinner/LoadingSpinner";
 import Carousel from "react-elastic-carousel";
 import CollectionCard from "../../components/collection-card/CollectionCard";
 import AddCollection from "../../components/add-collection/AddCollection";
@@ -11,6 +13,7 @@ import "./AuthHome.css";
 
 export default function AuthHome() {
   const { auth, setAuth } = useContext(AuthContext);
+  const [loading, setLoading] = useState(true);
   const [show, setShow] = useState(false);
 
   const breakPoints = [
@@ -22,13 +25,13 @@ export default function AuthHome() {
   ];
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_DOMAIN}/auth/user`, { credentials: "include" })
+    fetch(`${process.env.REACT_APP_API_DOMAIN}/auth/user/full`, { credentials: "include" })
       .then((res) => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
-        // setAuth({ isAuth: true, userId: data.user._id, name: data.user.name, email: data.user.email });
+        setLoading(false);
+        setAuth({ isAuth: true, userId: data.user._id, name: data.user.name, email: data.user.email, collections: data.user.collections });
       })
       .catch((err) => console.log(err));
   }, [setAuth]);
@@ -50,19 +53,23 @@ export default function AuthHome() {
       </div>
       <div className="AuthHome-grey">
         <div className="AuthHome-CollectionsContainer">
-          <Carousel breakPoints={breakPoints}>
-            {auth.collections.map((collection) => {
-              return (
-                <CollectionCard
-                  id={collection.id}
-                  key={collection.id}
-                  name={collection.name}
-                  icon={collection.icon}
-                  flashcardAmount={collection.flashcards.length}
-                />
-              );
-            })}
-          </Carousel>
+          {loading ? (
+            <LoadingSpinner />
+          ) : (
+            <Carousel breakPoints={breakPoints}>
+              {auth.collections.map((collection, index) => {
+                return (
+                  <CollectionCard
+                    id={collection._id}
+                    key={index}
+                    name={collection.name}
+                    icon={icons[collection.icon]}
+                    flashcardAmount={collection.flashcards.length}
+                  />
+                );
+              })}
+            </Carousel>
+          )}
         </div>
         <div className="AuthHome-red"></div>
       </div>
