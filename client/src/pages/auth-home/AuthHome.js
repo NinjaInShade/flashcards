@@ -1,5 +1,5 @@
 // Libraries , css and static files
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../utils/AuthContext";
 import { icons } from "../../utils/icons";
@@ -11,9 +11,8 @@ import Button from "../../components/util/button/Button";
 
 import "./AuthHome.css";
 
-export default function AuthHome() {
-  const { auth, setAuth } = useContext(AuthContext);
-  const [loading, setLoading] = useState(true);
+export default function AuthHome({ loading }) {
+  const { auth } = useContext(AuthContext);
   const [show, setShow] = useState(false);
 
   const breakPoints = [
@@ -23,18 +22,6 @@ export default function AuthHome() {
     { width: 1500, itemsToShow: 4 },
     { width: 2000, itemsToShow: 5 },
   ];
-
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_DOMAIN}/auth/user/full`, { credentials: "include" })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setLoading(false);
-        setAuth({ isAuth: true, userId: data.user._id, name: data.user.name, email: data.user.email, collections: data.user.collections });
-      })
-      .catch((err) => console.log(err));
-  }, [setAuth]);
 
   return (
     <div className="AuthHome-container">

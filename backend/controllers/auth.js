@@ -19,12 +19,10 @@ function getUserFull(req, res, next) {
         return { ...c.toJSON(), flashcards: currentCollectionsFlashcards };
       });
 
-      return res
-        .status(200)
-        .json({
-          message: "Full user data gathered",
-          user: { name: req.user.name, _id: req.user._id, email: req.user.email, collections: updatedCollections },
-        });
+      return res.status(200).json({
+        message: "Full user data gathered",
+        user: { name: req.user.name, _id: req.user._id, email: req.user.email, collections: updatedCollections },
+      });
     })
     .catch((err) => console.log(err));
 }
