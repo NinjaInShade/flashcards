@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { icons } from "../../utils/icons";
+import { AuthContext } from "../../utils/AuthContext";
 import Modal from ".././util/modal/Modal";
 import Button from "../util/button/Button";
 import Input from ".././util/input/Input";
@@ -7,6 +8,7 @@ import Input from ".././util/input/Input";
 import "./AddCollection.css";
 
 export default function AddCollection({ show, setShow }) {
+  const { auth, setAuth } = useContext(AuthContext);
   const [collectionName, setCollectionName] = useState("");
   const [iconName, setIconName] = useState("");
   const [error, setError] = useState({});
@@ -36,8 +38,22 @@ export default function AddCollection({ show, setShow }) {
     setError(newError);
 
     if (newError.name === "" && newError.collections === "") {
-      console.log(`sending ${collectionName} and ${iconName} to backend`);
-      setShow(false);
+      fetch(`${process.env.REACT_APP_API_DOMAIN}/collections/add`, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name: collectionName, icon: iconName }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          setAuth({ ...auth, collections: [...auth.collections, { ...data.newCollection, flashcards: [] }] });
+          setShow(false);
+        })
+        .catch((err) => console.log(err));
     }
   }
 
@@ -45,14 +61,7 @@ export default function AddCollection({ show, setShow }) {
     <>
       <Modal show={show} setShow={setShow}>
         <form className="AddCollection-form">
-          <Input
-            label="Name"
-            maxLength="20"
-            value={collectionName}
-            setValue={(e) => setCollectionName(e.target.value)}
-            error={[error.name]}
-            placeholder="Collection name"
-          />
+          <Input label="Name" maxLength="20" value={collectionName} setValue={setCollectionName} error={[error.name]} placeholder="Collection name" />
           <div className="AddCollection-label-container">
             <label className="AddCollection-label">Pick an icon</label>
           </div>
