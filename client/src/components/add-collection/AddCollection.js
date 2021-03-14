@@ -49,7 +49,6 @@ export default function AddCollection({ show, setShow }) {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           setAuth({ ...auth, collections: [...auth.collections, { ...data.newCollection, flashcards: [] }] });
           setShow(false);
         })
