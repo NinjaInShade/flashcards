@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Modal from ".././util/modal/Modal";
 import Input from ".././util/input/Input";
 import Button from "../util/button/Button";
+import { AuthContext } from "../../utils/AuthContext";
 
 import "./AddFlashcard.css";
 
-export default function AddFlashcard({ show, setShow }) {
+export default function AddFlashcard({ show, setShow, collectionId }) {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [error, setError] = useState({});
+
+  const { auth, setAuth } = useContext(AuthContext);
 
   useEffect(() => {
     setQuestion("");
@@ -28,8 +31,38 @@ export default function AddFlashcard({ show, setShow }) {
 
     setError(newErrorState);
 
-    if (newErrorState.question !== "" && newErrorState.answer !== "") {
-      console.log("creating");
+    if (newErrorState.question === "" && newErrorState.answer === "") {
+      fetch(`${process.env.REACT_APP_API_DOMAIN}/flashcards/add`, {
+        credentials: "include",
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ question: question, answer: answer, collection_id: collectionId }),
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          if (data.error) {
+            return;
+          }
+
+          let updatedCollections = [...auth.collections];
+          const collectionIndex = auth.collections.findIndex((c) => c._id === collectionId);
+
+          updatedCollections[collectionIndex] = {
+            ...updatedCollections[collectionIndex],
+            flashcards: [...updatedCollections[collectionIndex].flashcards, data.newFlashcard],
+          };
+
+          setAuth({ ...auth, collections: updatedCollections });
+          setShow(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }
 

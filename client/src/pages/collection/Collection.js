@@ -39,7 +39,7 @@ export default function Collections() {
 
   const content = currentCollection ? (
     <>
-      <AddFlashcard show={show} setShow={setShow} />
+      <AddFlashcard show={show} setShow={setShow} collectionId={collectionId} />
       <div className="AuthHome-container">
         <div className="AuthHome-hero">
           <div className="Collection-HeroTextContainer">
