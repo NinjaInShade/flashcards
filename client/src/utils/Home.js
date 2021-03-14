@@ -12,6 +12,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   const latestPage = localStorage.getItem("latestPage") || "/";
+  const authedPage = latestPage === "/" ? <AuthHome loading={loading} /> : <Redirect to={latestPage} />;
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_DOMAIN}/auth/user/full`, { credentials: "include" })
@@ -20,6 +21,7 @@ export default function Home() {
       })
       .then((data) => {
         if (data.error) {
+          setLoading(false);
           return;
         }
 
@@ -31,5 +33,5 @@ export default function Home() {
       });
   }, [setAuth]);
 
-  return auth.isAuth ? latestPage === "/" ? <AuthHome loading={loading} /> : <Redirect to={latestPage} /> : <NoAuthHome loading={loading} />;
+  return auth.isAuth ? authedPage : <NoAuthHome loading={loading} />;
 }
