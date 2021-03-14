@@ -3,7 +3,7 @@ const Flashcard = require("../models/Flashcard");
 function addFlashcard(req, res, next) {
   const { question, answer, collection_id } = req.body;
 
-  const newFlashcard = new Flashcard({ question, answer, collection_id });
+  const newFlashcard = new Flashcard({ question, answer, collection_id, user_id: req.user._id });
 
   newFlashcard
     .save()
