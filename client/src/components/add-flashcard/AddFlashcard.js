@@ -6,7 +6,7 @@ import { AuthContext } from "../../utils/AuthContext";
 
 import "./AddFlashcard.css";
 
-export default function AddFlashcard({ show, setShow, collectionId }) {
+export default function AddFlashcard({ show, setShow, collectionId, flashcardId, edit = false }) {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [error, setError] = useState({});
@@ -17,9 +17,26 @@ export default function AddFlashcard({ show, setShow, collectionId }) {
     setQuestion("");
     setAnswer("");
     setError({});
-  }, [show]);
 
-  function createFlashcardHandler() {
+    if (edit) {
+      fetch(`${process.env.REACT_APP_API_DOMAIN}/flashcards/${flashcardId}`, { method: "GET", credentials: "include" })
+        .then((res) => res.json())
+        .then((data) => {
+          setQuestion(data.flashcard.question);
+          setAnswer(data.flashcard.answer);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [show, edit, flashcardId]);
+
+  function addOrEditFlashcard() {
+    const domain = edit
+      ? `${process.env.REACT_APP_API_DOMAIN}/flashcards/edit/${collectionId}/${flashcardId}`
+      : `${process.env.REACT_APP_API_DOMAIN}/flashcards/add`;
+    const method = edit ? "PATCH" : "POST";
+
     let newErrorState = { question: "", answer: "" };
     if (question.length === 0) {
       newErrorState.question = "Cannot be empty";
@@ -32,9 +49,9 @@ export default function AddFlashcard({ show, setShow, collectionId }) {
     setError(newErrorState);
 
     if (newErrorState.question === "" && newErrorState.answer === "") {
-      fetch(`${process.env.REACT_APP_API_DOMAIN}/flashcards/add`, {
+      fetch(domain, {
         credentials: "include",
-        method: "POST",
+        method: method,
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
@@ -50,13 +67,17 @@ export default function AddFlashcard({ show, setShow, collectionId }) {
           }
 
           let collections = [...auth.collections];
-          const collectionIndex = auth.collections.findIndex((c) => c._id === collectionId);
+          const collectionIndex = collections.findIndex((c) => c._id.toString() === collectionId.toString());
+
           let updatedCollection = { ...auth.collections[collectionIndex] };
 
-          updatedCollection = {
-            ...collections[collectionIndex],
-            flashcards: [...updatedCollection.flashcards, data.newFlashcard],
-          };
+          if (edit) {
+            const flashcardIndex = collections[collectionIndex].flashcards.findIndex((f) => f._id.toString() === flashcardId.toString());
+
+            updatedCollection.flashcards[flashcardIndex] = { ...updatedCollection.flashcards[flashcardIndex], question, answer };
+          } else {
+            updatedCollection.flashcards.push(data.newFlashcard);
+          }
 
           collections[collectionIndex] = updatedCollection;
 
@@ -94,8 +115,8 @@ export default function AddFlashcard({ show, setShow, collectionId }) {
           maxLength="1000"
           className="add-flashcard-input"
         />
-        <Button className="add-flashcard-btn" onClick={createFlashcardHandler}>
-          Create flashcard
+        <Button className="add-flashcard-btn" onClick={addOrEditFlashcard}>
+          {edit ? "Edit flashcard" : "Create flashcard"}
         </Button>
       </Modal>
     </>

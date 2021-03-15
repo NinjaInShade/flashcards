@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
-import Modal from ".././util/modal/Modal";
 import { AuthContext } from "../../utils/AuthContext";
+import Modal from ".././util/modal/Modal";
+import AddFlashcard from "../add-flashcard/AddFlashcard";
 import ReactCardFlip from "react-card-flip";
 
 import "./Flashcard.css";
@@ -9,6 +10,7 @@ export default function Flashcard({ frontContent, backContent, id, currentCollec
   const [modalContent, setModalContent] = useState("");
   const [flip, setFlip] = useState(false);
   const [show, setShow] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
 
   const { auth, setAuth } = useContext(AuthContext);
 
@@ -20,10 +22,6 @@ export default function Flashcard({ frontContent, backContent, id, currentCollec
     }
 
     setShow(!show);
-  }
-
-  function editFlashcard() {
-    console.log("edited");
   }
 
   function deleteFlashcard() {
@@ -48,6 +46,7 @@ export default function Flashcard({ frontContent, backContent, id, currentCollec
 
   return (
     <>
+      <AddFlashcard show={showEdit} setShow={setShowEdit} collectionId={currentCollectionId} flashcardId={id} edit={true} />
       <Modal show={show} setShow={setShow}>
         <h1 className="flashcard-modal-title">Full {modalContent}:</h1>
         <p className="flashcard-modal-content">{modalContent === "answer" ? backContent : frontContent}</p>
@@ -68,7 +67,7 @@ export default function Flashcard({ frontContent, backContent, id, currentCollec
             )}
           </p>
           <div className="flashcard-flip">
-            <button onClick={() => editFlashcard()}>
+            <button onClick={() => setShowEdit(!showEdit)}>
               <i className="fas fa-edit flashcard-icon"></i>
             </button>
             <button onClick={() => deleteFlashcard()}>
@@ -95,7 +94,7 @@ export default function Flashcard({ frontContent, backContent, id, currentCollec
             )}
           </p>
           <div className="flashcard-flip">
-            <button onClick={() => editFlashcard()}>
+            <button onClick={() => setShowEdit(!showEdit)}>
               <i className="fas fa-edit flashcard-icon"></i>
             </button>
             <button onClick={() => deleteFlashcard()}>

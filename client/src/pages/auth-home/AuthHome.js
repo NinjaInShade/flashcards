@@ -39,11 +39,11 @@ export default function AuthHome({ loading }) {
         </div>
       </div>
       <div className="AuthHome-grey">
-        <div className="AuthHome-CollectionsContainer">
+        <div className="AuthHome-CollectionsContainer" key={auth.collections}>
           {loading ? (
             <LoadingSpinner />
           ) : (
-            <Carousel breakPoints={breakPoints}>
+            <Carousel breakPoints={breakPoints} key={auth.collections}>
               {auth.collections.map((collection, index) => {
                 return (
                   <CollectionCard

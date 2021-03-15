@@ -78,8 +78,8 @@ export default function Collections() {
           </div>
         </div>
         <div className="AuthHome-grey">
-          <div className="AuthHome-CollectionsContainer">
-            <Carousel breakPoints={breakPoints}>
+          <div className="AuthHome-CollectionsContainer" key={currentCollection}>
+            <Carousel breakPoints={breakPoints} key={currentCollection}>
               {currentCollection.flashcards.map((flashcard, index) => {
                 return (
                   <Flashcard
