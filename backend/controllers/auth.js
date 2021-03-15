@@ -1,4 +1,5 @@
 const Flashcard = require("../models/Flashcard");
+const AppError = require("../util/error");
 
 function getUser(req, res, next) {
   return res.status(200).json({
@@ -24,7 +25,11 @@ function getUserFull(req, res, next) {
         user: { name: req.user.name, _id: req.user._id, email: req.user.email, collections: updatedCollections },
       });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new AppError(err, 500);
+
+      next(error);
+    });
 }
 
 function getAuthFailure(req, res, next) {

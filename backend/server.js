@@ -78,6 +78,15 @@ app.use((req, res, next) => {
   });
 });
 
+// Error handler
+app.use((err, req, res, next) => {
+  err.statusCode = err.statusCode || 500;
+
+  res.status(err.statusCode).json({
+    error: err.message,
+  });
+});
+
 app.listen(process.env.PORT || 5000, () => {
   console.log(`Server successfully started on port ${process.env.PORT || 5000}`);
 

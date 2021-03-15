@@ -22,6 +22,7 @@
   font-weight: bold;
   font-size: 5rem;
   margin-right: 1rem;
+  word-break: break-all;
 }
 
 .Collection-header-controls {

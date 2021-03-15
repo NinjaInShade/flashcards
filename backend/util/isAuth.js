@@ -1,6 +1,10 @@
+const AppError = require("../util/error");
+
 module.exports = function (req, res, next) {
   if (!req.user) {
-    return res.status(401).json({ error: "Not authorized" });
+    const error = new AppError("User not authorized", 401);
+
+    next(error);
   }
 
   next();

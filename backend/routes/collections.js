@@ -12,6 +12,7 @@ router.post("/add", isAuth, collectionsController.postAddCollection);
 // DELETE ( delete a collection )
 router.delete("/:collectionId", isAuth, collectionsController.deleteCollection);
 
+// PATCH ( edit a collection )
 router.patch("/edit/:collectionId", isAuth, collectionsController.patchEditCollection);
 
 module.exports = router;

@@ -1,4 +1,5 @@
 const Flashcard = require("../models/Flashcard");
+const AppError = require("../util/error");
 
 function getFlashcard(req, res, next) {
   const flashcardId = req.params.flashcardId;
@@ -7,7 +8,11 @@ function getFlashcard(req, res, next) {
     .then((flashcard) => {
       return res.status(200).json({ message: "Flashcard successfully found", flashcard });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new AppError(err, 500);
+
+      next(error);
+    });
 }
 
 // Add new flashcard
@@ -24,7 +29,11 @@ function addFlashcard(req, res, next) {
         newFlashcard: { question, answer, collection_id, _id: newFlashcard._id },
       });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new AppError(err, 500);
+
+      next(error);
+    });
 }
 
 // Delete a flashcard
@@ -35,7 +44,11 @@ function deleteFlashcard(req, res, next) {
     .then(() => {
       return res.status(200).json({ message: "Flashcard successfully deleted" });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new AppError(err, 500);
+
+      next(error);
+    });
 }
 
 function patchEditFlashcard(req, res, next) {
@@ -54,7 +67,11 @@ function patchEditFlashcard(req, res, next) {
     .then(() => {
       return res.status(200).json({ message: "Flashcard successfully edited" });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new AppError(err, 500);
+
+      next(error);
+    });
 }
 
 module.exports = {
