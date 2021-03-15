@@ -13,7 +13,7 @@ import "./AuthHome.css";
 
 export default function AuthHome({ loading }) {
   const { auth } = useContext(AuthContext);
-  const [show, setShow] = useState(false);
+  const [showAdd, setShowAdd] = useState(false);
 
   const breakPoints = [
     { width: 1, itemsToShow: 1 },
@@ -25,7 +25,7 @@ export default function AuthHome({ loading }) {
 
   return (
     <div className="AuthHome-container">
-      <AddCollection show={show} setShow={setShow} />
+      <AddCollection show={showAdd} setShow={setShowAdd} />
       <div className="AuthHome-hero">
         <div className="AuthHome-HeroTextContainer">
           <h1 className="AuthHome-HeroTextHeading">Welcome back</h1>
@@ -33,7 +33,7 @@ export default function AuthHome({ loading }) {
           <Link to={`/user/${auth.userId}/test`}>
             <Button className="AuthHome-btn">Test yourself</Button>
           </Link>
-          <Button ghost onClick={() => setShow(true)}>
+          <Button ghost onClick={() => setShowAdd(true)}>
             Create new collection
           </Button>
         </div>

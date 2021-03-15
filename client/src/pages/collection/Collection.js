@@ -3,6 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Redirect, useParams, Link } from "react-router-dom";
 import { AuthContext } from "../../utils/AuthContext";
 import { icons } from "../../utils/icons";
+import AddCollection from "../../components/add-collection/AddCollection";
 import LoadingSpinner from "../../components/util/loadingSpinner/LoadingSpinner";
 import Carousel from "react-elastic-carousel";
 import Flashcard from "../../components/flashcard/Flashcard";
@@ -15,6 +16,7 @@ export default function Collections() {
   const { auth } = useContext(AuthContext);
   const [deleted, setDeleted] = useState(false);
   const [show, setShow] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
   const [currentCollection, setCurrentCollection] = useState();
   const { collectionId } = useParams();
 
@@ -29,10 +31,6 @@ export default function Collections() {
   useEffect(() => {
     setCurrentCollection(auth.collections.filter((collection) => collection._id === collectionId)[0]);
   }, [auth.collections, collectionId]);
-
-  function editCollection() {
-    console.log("Edit collection");
-  }
 
   function deleteCollection() {
     fetch(`${process.env.REACT_APP_API_DOMAIN}/collections/${collectionId}`, {
@@ -49,11 +47,15 @@ export default function Collections() {
   const content = currentCollection ? (
     <>
       <AddFlashcard show={show} setShow={setShow} collectionId={collectionId} />
+      <AddCollection show={showEdit} setShow={setShowEdit} edit={true} collectionId={collectionId} />
       <div className="AuthHome-container">
         <div className="AuthHome-hero">
           <div className="Collection-HeroTextContainer">
             <div className="Collection-header">
-              <i className={`${icons[currentCollection.icon]} Collection-icon`}></i>
+              <span key={currentCollection.icon}>
+                <i className={`${icons[currentCollection.icon]} Collection-icon`}></i>
+              </span>
+
               <h1 className="Collection-HeroTextHeading">{currentCollection.name}</h1>
             </div>
             <p className="Collection-HeroTextLead">View all the flashcards below</p>
@@ -62,7 +64,7 @@ export default function Collections() {
             </Link>
             <div className="Collection-controls">
               <div className="Collection-edit-btns">
-                <Button className="Collection-edit-btn" onClick={() => editCollection()} ghost>
+                <Button className="Collection-edit-btn" onClick={() => setShowEdit(!showEdit)} ghost>
                   Edit collection
                 </Button>
                 <Button className="Collection-delete-btn" onClick={() => deleteCollection()} ghost>

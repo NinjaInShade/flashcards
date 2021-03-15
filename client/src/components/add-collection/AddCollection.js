@@ -7,7 +7,7 @@ import Input from ".././util/input/Input";
 
 import "./AddCollection.css";
 
-export default function AddCollection({ show, setShow }) {
+export default function AddCollection({ show, setShow, edit = false, collectionId }) {
   const { auth, setAuth } = useContext(AuthContext);
   const [collectionName, setCollectionName] = useState("");
   const [iconName, setIconName] = useState("");
@@ -17,10 +17,27 @@ export default function AddCollection({ show, setShow }) {
     setCollectionName("");
     setIconName("");
     setError({});
-  }, [show]);
 
-  function addGroupHandler(e) {
+    if (edit) {
+      fetch(`${process.env.REACT_APP_API_DOMAIN}/collections/${collectionId}`, { method: "GET", credentials: "include" })
+        .then((res) => res.json())
+        .then((data) => {
+          setCollectionName(data.collection.name);
+          setIconName(data.collection.icon);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [show, edit, collectionId]);
+
+  function addOrEditCollection(e) {
     e.preventDefault();
+
+    const domain = edit
+      ? `${process.env.REACT_APP_API_DOMAIN}/collections/edit/${collectionId}`
+      : `${process.env.REACT_APP_API_DOMAIN}/collections/add`;
+    const method = edit ? "PATCH" : "POST";
 
     let newError = { name: "", collections: "" };
     if (!collectionName) {
@@ -38,8 +55,8 @@ export default function AddCollection({ show, setShow }) {
     setError(newError);
 
     if (newError.name === "" && newError.collections === "") {
-      fetch(`${process.env.REACT_APP_API_DOMAIN}/collections/add`, {
-        method: "POST",
+      fetch(domain, {
+        method: method,
         credentials: "include",
         headers: {
           Accept: "application/json",
@@ -49,7 +66,16 @@ export default function AddCollection({ show, setShow }) {
       })
         .then((res) => res.json())
         .then((data) => {
-          setAuth({ ...auth, collections: [...auth.collections, { ...data.newCollection, flashcards: [] }] });
+          if (edit) {
+            let updatedCollections = [...auth.collections];
+            const collectionIndex = auth.collections.findIndex((c) => c._id.toString() === collectionId.toString());
+
+            updatedCollections[collectionIndex] = { ...updatedCollections[collectionIndex], name: collectionName, icon: iconName };
+
+            setAuth({ ...auth, collections: updatedCollections });
+          } else {
+            setAuth({ ...auth, collections: [...auth.collections, { ...data.newCollection, flashcards: [] }] });
+          }
           setShow(false);
         })
         .catch((err) => console.log(err));
@@ -78,8 +104,8 @@ export default function AddCollection({ show, setShow }) {
               );
             })}
           </div>
-          <Button onClick={(e) => addGroupHandler(e)} type="submit" className="AddCollection-btn">
-            Create collection
+          <Button onClick={(e) => addOrEditCollection(e)} type="submit" className="AddCollection-btn">
+            {edit ? "Edit collection" : "Create collection"}
           </Button>
           <p className="AddCollection-error">{error.collections}</p>
         </form>

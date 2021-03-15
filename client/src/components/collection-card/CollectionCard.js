@@ -10,7 +10,9 @@ export default function CollectionCard({ name, icon, id, flashcardAmount }) {
 
   return (
     <Link to={`/user/${auth.userId}/collections/${id}`} className="CollectionCard-card">
-      <i className={`${icon} fa-4x CollectionCard-icon`}></i>
+      <span key={icon}>
+        <i className={`${icon} fa-4x CollectionCard-icon`}></i>
+      </span>
       <p className="CollectionCard-text">{name}</p>
       <p className="CollectionCard-lead">{`${flashcardAmount} flashcards`}</p>
     </Link>
