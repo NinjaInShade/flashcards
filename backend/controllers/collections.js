@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const User = require("../models/User");
 const Flashcard = require("../models/Flashcard");
 
@@ -16,14 +17,21 @@ function getCollection(req, res, next) {
 function postAddCollection(req, res, next) {
   const { name, icon } = req.body;
 
+  let newCollection = { name, icon, _id: mongoose.Types.ObjectId() };
+
   User.findById(req.user._id)
     .then((user) => {
-      user.collections = [...user.collections, { name, icon }];
+      user.collections = [...user.collections, newCollection];
 
       return user.save();
     })
     .then(() => {
-      return res.status(200).json({ message: "New collection successfully added", newCollection: { name, icon } });
+      return res
+        .status(200)
+        .json({
+          message: "New collection successfully added",
+          newCollection: { name: newCollection.name, icon: newCollection.icon, _id: newCollection._id },
+        });
     })
     .catch((err) => console.log(err));
 }
