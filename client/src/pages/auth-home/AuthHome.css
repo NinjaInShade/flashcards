@@ -71,6 +71,10 @@
   .AuthHome-red {
     height: 100px;
   }
+
+  .AuthHome-HeroTextHeading {
+    font-size: 4rem;
+  }
 }
 
 @media (max-width: 450px) {

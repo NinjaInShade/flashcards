@@ -1,15 +1,16 @@
 require("dotenv").config();
 const express = require("express");
-const app = express();
 const cors = require("cors");
-const mongoose = require("mongoose");
-const passport = require("passport");
 const cookieSession = require("cookie-session");
-const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
+const User = require("./models/User");
+const app = express();
+const passport = require("passport");
 const authRoutes = require("./routes/auth");
 const flashcardRoutes = require("./routes/flashcards");
 const collectionRoutes = require("./routes/collections");
-const User = require("./models/User");
+const mongoose = require("mongoose");
+const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
+const { ValidationError } = require("express-validation");
 
 app.use(express.json());
 app.use(cors({ credentials: true, origin: process.env.FRONTEND_DOMAIN }));
@@ -80,6 +81,10 @@ app.use((req, res, next) => {
 
 // Error handler
 app.use((err, req, res, next) => {
+  if (err instanceof ValidationError) {
+    return res.status(err.statusCode).json({ error: err });
+  }
+
   err.statusCode = err.statusCode || 500;
 
   res.status(err.statusCode).json({

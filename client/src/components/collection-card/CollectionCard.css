@@ -6,6 +6,7 @@
   align-items: flex-start;
   cursor: pointer;
   text-decoration: none;
+  max-width: 750px;
   border-radius: 8px;
   padding: 30px;
   margin: 8px;

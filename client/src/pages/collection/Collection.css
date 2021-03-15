@@ -51,6 +51,13 @@
   width: 100%;
 }
 
+@media (max-width: 750px) {
+  .Collection-HeroTextHeading,
+  .Collection-icon {
+    font-size: 3.5rem;
+  }
+}
+
 @media (max-width: 500px) {
   .Collection-HeroTextContainer {
     width: 100%;
