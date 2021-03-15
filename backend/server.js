@@ -82,7 +82,7 @@ app.use((req, res, next) => {
 // Error handler
 app.use((err, req, res, next) => {
   if (err instanceof ValidationError) {
-    return res.status(err.statusCode).json({ error: err });
+    return res.status(err.statusCode).json({ error: err.message });
   }
 
   err.statusCode = err.statusCode || 500;
