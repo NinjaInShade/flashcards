@@ -81,6 +81,7 @@ app.use((req, res, next) => {
 
 // Error handler
 app.use((err, req, res, next) => {
+  console.log(err.details.body);
   if (err instanceof ValidationError) {
     return res.status(err.statusCode).json({ error: err.message });
   }

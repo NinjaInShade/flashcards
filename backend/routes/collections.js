@@ -4,10 +4,10 @@ const router = express.Router();
 const isAuth = require("../util/isAuth");
 const collectionsController = require("../controllers/collections");
 
-const flashcardValidation = {
+const collectionValidation = {
   body: Joi.object({
-    question: Joi.string().trim().min(1).max(500),
-    answer: Joi.string().trim().min(1).max(1000),
+    name: Joi.string().trim().min(1).max(20),
+    icon: Joi.string().trim().min(1).max(20),
   }),
 };
 
@@ -15,12 +15,12 @@ const flashcardValidation = {
 router.get("/:collectionId", isAuth, collectionsController.getCollection);
 
 // POST ( create a new collection )
-router.post("/add", isAuth, validate(flashcardValidation, {}, {}), collectionsController.postAddCollection);
+router.post("/add", isAuth, validate(collectionValidation, {}, {}), collectionsController.postAddCollection);
 
 // DELETE ( delete a collection )
 router.delete("/:collectionId", isAuth, collectionsController.deleteCollection);
 
 // PATCH ( edit a collection )
-router.patch("/edit/:collectionId", isAuth, validate(flashcardValidation, {}, {}), collectionsController.patchEditCollection);
+router.patch("/edit/:collectionId", isAuth, validate(collectionValidation, {}, {}), collectionsController.patchEditCollection);
 
 module.exports = router;

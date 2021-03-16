@@ -1,0 +1,18 @@
+.start-test-header {
+  text-align: center;
+  margin: 1rem auto;
+  max-width: 650px;
+  font-size: 3rem;
+  padding-top: 8rem;
+}
+
+.start-test-lead {
+  font-style: italic;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.start-test-btn {
+  width: 100%;
+  max-width: 650px;
+}
