@@ -22,7 +22,7 @@ export default function Navbar({ children }) {
     },
     {
       pageName: "Test yourself",
-      pageURL: `/user/${auth.userId}/test`,
+      pageURL: `/test`,
       requireAuth: true,
       exact: false,
     },

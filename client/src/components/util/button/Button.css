@@ -12,6 +12,10 @@
   background: var(--purple-700);
 }
 
+.btn:disabled {
+  cursor: not-allowed;
+}
+
 .ghost-btn {
   border: 1px solid var(--purple-700);
   color: var(--purple-600);

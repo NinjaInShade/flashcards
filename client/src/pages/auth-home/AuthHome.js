@@ -30,7 +30,7 @@ export default function AuthHome({ loading }) {
         <div className="AuthHome-HeroTextContainer">
           <h1 className="AuthHome-HeroTextHeading">Welcome back</h1>
           <p className="AuthHome-HeroTextLead">View all your collection's here</p>
-          <Link to={`/user/${auth.userId}/test`}>
+          <Link to={`/test`}>
             <Button className="AuthHome-btn">Test yourself</Button>
           </Link>
           <Button ghost onClick={() => setShowAdd(true)}>
