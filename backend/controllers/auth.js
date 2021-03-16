@@ -38,6 +38,8 @@ function getAuthFailure(req, res, next) {
   });
 }
 
+// On logout
+
 function getLogout(req, res, next) {
   req.session = null;
   req.logout();

@@ -15,7 +15,7 @@ export default function Home() {
   const authedPage = latestPage === "/" ? <AuthHome loading={loading} /> : <Redirect to={latestPage} />;
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_DOMAIN}/auth/user/full`, { credentials: "include" })
+    fetch(`${process.env.REACT_APP_API_DOMAIN}/auth/user/full`, { method: "GET", credentials: "include" })
       .then((res) => {
         return res.json();
       })

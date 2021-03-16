@@ -32,7 +32,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:5000/auth/google/callback",
+      callbackURL: `${process.env.DOMAIN}/auth/google/callback`,
     },
     function (accessToken, refreshToken, profile, done) {
       // Check if user already exists in our db with the given profile ID
@@ -57,10 +57,14 @@ passport.use(
   )
 );
 
+app.set("trust proxy", 1);
+
 app.use(
   cookieSession({
     name: "flashcardSession",
     secret: process.env.SESSION_SECRET,
+    secure: true,
+    sameSite: "none",
   })
 );
 
@@ -81,7 +85,6 @@ app.use((req, res, next) => {
 
 // Error handler
 app.use((err, req, res, next) => {
-  console.log(err.details.body);
   if (err instanceof ValidationError) {
     return res.status(err.statusCode).json({ error: err.message });
   }
