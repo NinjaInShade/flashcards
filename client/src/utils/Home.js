@@ -17,9 +17,11 @@ export default function Home() {
   const authedPage = latestPage === "/" ? <AuthHome loading={loading} /> : <Redirect to={latestPage} />;
 
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const tokenParam = params.toString().split("=")[1];
-    localStorage.setItem("token", JSON.stringify(tokenParam));
+    const tokenParam = new URLSearchParams(location.search).toString().split("=")[1];
+
+    if (tokenParam) {
+      localStorage.setItem("token", JSON.stringify(tokenParam));
+    }
 
     let token = localStorage.getItem("token");
 
