@@ -1,7 +1,6 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const cookieSession = require("cookie-session");
 const User = require("./models/User");
 const app = express();
 const passport = require("passport");
@@ -57,19 +56,7 @@ passport.use(
   )
 );
 
-app.set("trust proxy", 1);
-
-app.use(
-  cookieSession({
-    name: "flashcardSession",
-    secret: process.env.SESSION_SECRET,
-    secure: true,
-    sameSite: "none",
-  })
-);
-
 app.use(passport.initialize());
-app.use(passport.session());
 
 // Route middlewares
 app.use("/auth", authRoutes);

@@ -32,7 +32,10 @@ export default function Navbar({ children }) {
     fetch(`${process.env.REACT_APP_API_DOMAIN}/auth/logout`, { credentials: "include" })
       .then((res) => res.json())
       .then((data) => {
+        localStorage.clear("token");
         setAuth({ isAuth: false });
+
+        window.location.href = "/";
       })
       .catch((err) => console.log(err));
   }
